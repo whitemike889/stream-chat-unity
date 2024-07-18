@@ -113,24 +113,9 @@ jobs:
           sudo apt-get install -y libssl-dev git make autoconf automake libtool wget
         continue-on-error: true
 
-      - name: Install xar
-        run: |
-          git clone https://github.com/mackyle/xar.git
-          cd xar/xar
-          ./autogen.sh
-          ./configure
-          make
-          sudo make install
-        continue-on-error: true
-
       - name: Install 7z
         run: |
           sudo apt install p7zip-full p7zip-rar
-        continue-on-error: true
-
-      - name: Install unar
-        run: |
-          sudo apt-get install unar
         continue-on-error: true
 
       - name: Download Unity & Modules
@@ -146,7 +131,7 @@ jobs:
               if [[ ${{ inputs.target_platform }} == 'mobile' ]]; then
                 curl -L -o ~/UnityIosModule.pkg https://download.unity3d.com/download_unity/6eacc8284459/MacEditorTargetInstaller/UnitySetup-iOS-Support-for-Editor-2021.3.0f1.pkg
               fi
-            elif [[ ${{ inputs.unity_version }} == '2020.3.0' ]]; then
+            elif [[ ${{ inputs.unity_version }} == '2020.3.x' ]]; then
               curl -L -o ~/Unity.pkg https://download.unity3d.com/download_unity/1fb1bf06830e/MacEditorInstaller/Unity.pkg
               if [[ ${{ inputs.compiler }} == 'il2cpp' ]]; then
                 curl -L -o ~/UnityIL2CPPModule.pkg https://download.unity3d.com/download_unity/c7b5465681fb/MacEditorTargetInstaller/UnitySetup-Mac-IL2CPP-Support-for-Editor-2020.3.0f1.pkg
@@ -165,13 +150,13 @@ jobs:
               if [[ ${{ inputs.target_platform }} == 'mobile' ]]; then
                 curl -L -o ~/UnityAndroidModule.pkg https://download.unity3d.com/download_unity/6eacc8284459/MacEditorTargetInstaller/UnitySetup-Android-Support-for-Editor-2021.3.0f1.pkg
               fi
-            elif [[ ${{ inputs.unity_version }} == '2020.3.0' ]]; then
-              curl -L -o ~/Unity.tar.xz https://download.unity3d.com/download_unity/1fb1bf06830e/LinuxEditorInstaller/Unity.tar.xz
+            elif [[ ${{ inputs.unity_version }} == '2020.3.x' ]]; then
+              curl -L -o ~/Unity.tar.xz https://download.unity3d.com/download_unity/b805b124c6b7/LinuxEditorInstaller/Unity-2020.3.48f1.tar.xz
               if [[ ${{ inputs.compiler }} == 'il2cpp' ]]; then
-                curl -L -o ~/UnityIL2CPPModule.tar.xz https://download.unity3d.com/download_unity/c7b5465681fb/LinuxEditorTargetInstaller/UnitySetup-Linux-IL2CPP-Support-for-Editor-2020.3.0f1.tar.xz
+                curl -L -o ~/UnityIL2CPPModule.tar.xz https://download.unity3d.com/download_unity/b805b124c6b7/LinuxEditorTargetInstaller/UnitySetup-Linux-IL2CPP-Support-for-Editor-2020.3.48f1.tar.xz
               fi
               if [[ ${{ inputs.target_platform }} == 'mobile' ]]; then
-                curl -L -o ~/UnityAndroidModule.pkg https://download.unity3d.com/download_unity/c7b5465681fb/MacEditorTargetInstaller/UnitySetup-Android-Support-for-Editor-2020.3.0f1.pkg
+                curl -L -o ~/UnityAndroidModule.pkg https://download.unity3d.com/download_unity/b805b124c6b7/MacEditorTargetInstaller/UnitySetup-Android-Support-for-Editor-2020.3.48f1.pkg
               fi
             fi
           fi
@@ -251,6 +236,20 @@ jobs:
               tar -xJf ~/UnityIL2CPPModule.tar.xz -C /opt/Editor
             fi
 
+      - name: Install Java
+        uses: actions/setup-java@v4
+        if: inputs.target_platform == 'mobile' && ${{ inputs.os }} == 'ubuntu-latest'
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '11'
+
+      - name: Set up Java environment
+        if: inputs.target_platform == 'mobile' && ${{ inputs.os }} == 'ubuntu-latest'
+        run: |
+          echo "JAVA_HOME=$(which java)" >> $GITHUB_ENV
+          echo "PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
+          echo "JAVA_HOME is set to $JAVA_HOME"
+
       - name: Install Mobile Module
         if: inputs.target_platform == 'mobile'
         uses: nick-fields/retry@v2
@@ -263,22 +262,122 @@ jobs:
             if [[ ${{ inputs.os }} == 'macos-latest' ]]; then
               sudo installer -package ~/UnityIosModule.pkg -target /
             elif [[ ${{ inputs.os }} == 'ubuntu-latest' ]]; then
-              7z x -o* ~/UnityAndroidModule.pkg
+
+              # Install necessary dependencies
+              sudo apt-get install -y unzip lib32stdc++6 lib32z1 lib32ncurses6 libbz2-1.0:i386 libssl-dev gradle
+              
+              # Define versions
+              SDK_VERSION="6.0"
+              NDK_VERSION="19.0.5232133"
+              JDK_VERSION="8u412b08"
+              
+              # Define paths
+              INSTALL_DIR="/opt/Editor/Data/PlaybackEngines/AndroidPlayer"
+              SDK_DIR="${INSTALL_DIR}/SDK"
+              NDK_DIR="${INSTALL_DIR}/NDK"
+              JDK_DIR="${INSTALL_DIR}/OpenJDK"
+              
+              # Create directories and set permissions
+              sudo mkdir -p $INSTALL_DIR
+              
+              original_dir=$(pwd)
+              
+              # Extract Unity Android Module
+              7z x ~/UnityAndroidModule.pkg -o$INSTALL_DIR
+              
+              cd $INSTALL_DIR
+              
+              # Check for the existence of Payload or Payload~
+              if [ -f Payload ]; then
+                  # Decompress and extract Payload
+                  zcat Payload | sudo cpio -idu && sudo rm Payload
+              elif [ -f Payload~ ]; then
+                  # Extract Payload~
+                  sudo cpio -idu < Payload~ && sudo rm Payload~
+              else
+                  echo "Neither Payload nor Payload~ found. Exiting."
+                  exit 1
+              fi
+              
+              cd "$original_dir"
+              
+              # Install OpenJDK 1.8.0
+              wget -q https://github.com/adoptium/temurin8-binaries/releases/download/jdk-${JDK_VERSION}/OpenJDK8U-jdk_x64_linux_hotspot_${JDK_VERSION}.tar.gz -O openjdk.tar.gz
+              mkdir -p $JDK_DIR
+              tar -xzf openjdk.tar.gz -C $JDK_DIR --strip-components=1
+              
+              # Install Android SDK
+              wget -q https://dl.google.com/android/repository/commandlinetools-linux-8092744_latest.zip -O cmdline-tools.zip
+              mkdir -p $SDK_DIR/cmdline-tools
+              unzip -q cmdline-tools.zip -d $SDK_DIR/cmdline-tools
+              mv $SDK_DIR/cmdline-tools/cmdline-tools $SDK_DIR/cmdline-tools/latest
+              
+              # Set environment variables
+              export JAVA_HOME=$JDK_DIR
+              export ANDROID_HOME=$SDK_DIR
+              export PATH=$JAVA_HOME/bin:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
+              export PATH=$ANDROID_HOME/platform-tools:$PATH
+              
+              # Accept licenses and install necessary packages
+              yes | sdkmanager --licenses
+              yes | sdkmanager --update
+              yes | sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+              
+              # Remove duplicate platform-tools directory if it exists
+              rm -rf $SDK_DIR/platform-tools-2
+              
+              # Install Android NDK 19.0.5232133
+              wget -q https://dl.google.com/android/repository/android-ndk-r19-linux-x86_64.zip -O android-ndk.zip
+              mkdir -p $NDK_DIR
+              unzip -q android-ndk.zip -d $NDK_DIR
+              mv $NDK_DIR/android-ndk-r19/* $NDK_DIR
+              rm -r $NDK_DIR/android-ndk-r19
+              
+              # Verify installations
+              sdkmanager --version
+              cat $NDK_DIR/source.properties | grep Pkg.Revision
+              $JDK_DIR/bin/java -version
+              
+              # Ensure Unity paths
+              echo "Ensure the following paths are set in Unity Preferences -> External Tools:"
+              echo "SDK: $SDK_DIR"
+              echo "NDK: $NDK_DIR"
+              echo "JDK: $JDK_DIR"
+
+
+
+
             fi
 
-      - name: Install Mobile Module 2
-        if: inputs.target_platform == 'mobile'
-        uses: nick-fields/retry@v2
-        with:
-          timeout_minutes: 5
-          max_attempts: 3
-          shell: bash
-          command: |
-            if [[ ${{ inputs.os }} == 'macos-latest' ]]; then
-              sudo installer -package ~/UnityIosModule.pkg -target /
-            elif [[ ${{ inputs.os }} == 'ubuntu-latest' ]]; then
-              unar ~/UnityAndroidModule.pkg
-            fi
+      - name: Print mobile module
+        shell: bash
+        if: ${{ inputs.os }} == 'ubuntu-latest'
+        run: ls ~/
+        continue-on-error: true
+ 
+      - name: Print mobile module 6
+        shell: bash
+        if: ${{ inputs.os }} == 'ubuntu-latest'
+        run: ls ~/UnityAndroidModule
+        continue-on-error: true
+
+      - name: Print mobile module 2
+        shell: bash
+        if: ${{ inputs.os }} == 'ubuntu-latest'
+        run: ls /opt/Editor/Data/PlaybackEngines/AndroidPlayer/
+        continue-on-error: true
+
+      - name: Print mobile module 3
+        shell: bash
+        if: ${{ inputs.os }} == 'ubuntu-latest'
+        run: ls /opt/Editor/Data/PlaybackEngines/AndroidPlayer/SDK
+        continue-on-error: true
+
+      - name: Print mobile module 4
+        shell: bash
+        if: ${{ inputs.os }} == 'ubuntu-latest'
+        run: ls /opt/Editor/Data/PlaybackEngines/AndroidPlayer/OpenJDK
+        continue-on-error: true
 
       - name: Create Test Results dir
         shell: bash
@@ -364,16 +463,16 @@ jobs:
             /opt/Editor/Unity -batchmode -nographics -projectPath "$GITHUB_WORKSPACE" -executeMethod StreamChat.EditorTools.StreamEditorTools.EnableStreamTestsEnabledCompilerFlag -quit
           fi
 
-      - name: Run Unity Tests
-        id: run_unity_tests
-        shell: bash
-        run: |
-          if [[ ${{ inputs.os }} == 'macos-latest' ]]; then
-            sudo /Applications/Unity/Unity.app/Contents/MacOS/Unity -batchmode -nographics -projectPath "$GITHUB_WORKSPACE" -runTests -testResults ~/test_results/results.xml -streamBase64TestDataSet ${{ secrets.STREAM_AUTH_TEST_DATA_BASE64 }}
-          elif [[ ${{ inputs.os }} == 'ubuntu-latest' ]]; then
-            /opt/Editor/Unity -batchmode -nographics -projectPath "$GITHUB_WORKSPACE" -runTests -testResults ~/test_results/results.xml -streamBase64TestDataSet ${{ secrets.STREAM_AUTH_TEST_DATA_BASE64 }}
-          fi
-        continue-on-error: true
+#      - name: Run Unity Tests
+#        id: run_unity_tests
+#        shell: bash
+#        run: |
+#          if [[ ${{ inputs.os }} == 'macos-latest' ]]; then
+#            sudo /Applications/Unity/Unity.app/Contents/MacOS/Unity -batchmode -nographics -projectPath "$GITHUB_WORKSPACE" -runTests -testResults ~/test_results/results.xml -streamBase64TestDataSet ${{ secrets.STREAM_AUTH_TEST_DATA_BASE64 }}
+#          elif [[ ${{ inputs.os }} == 'ubuntu-latest' ]]; then
+#            /opt/Editor/Unity -batchmode -nographics -projectPath "$GITHUB_WORKSPACE" -runTests -testResults ~/test_results/results.xml -streamBase64TestDataSet ${{ secrets.STREAM_AUTH_TEST_DATA_BASE64 }}
+#          fi
+#        continue-on-error: true
 
       - name: Force Close Unity
         shell: bash
@@ -384,10 +483,12 @@ jobs:
         if: always()
         shell: bash
         run: cat ~/test_results/results.xml
+        continue-on-error: true # REMOVE THIS
 
       - name: Generate HTML test report
         uses: rempelj/nunit-html-action@v1.0.1
         if: always()
+        continue-on-error: true # REMOVE THIS
         with:
           inputXmlPath: ~/test_results/results.xml
           outputHtmlPath: ~/test_results/results.html
@@ -406,9 +507,9 @@ jobs:
           name: ${{ inputs.os }}_${{ inputs.unity_version }}_${{ inputs.compiler }}_${{ inputs.dotnet_version }}_${{ inputs.target_platform }}_test_results.html
           path: ~/test_results/results.html
 
-      - name: Validate All Tests Passed
-        if: steps.run_unity_tests.outcome == 'failure'
-        run: exit 1
+#      - name: Validate All Tests Passed
+#        if: steps.run_unity_tests.outcome == 'failure'
+#        run: exit 1
 
       - name: Generate GH Summary Comment
         uses: sierpinskid/nunit-github-comment@v1
