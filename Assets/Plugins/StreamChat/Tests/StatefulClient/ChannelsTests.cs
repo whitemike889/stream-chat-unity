@@ -655,8 +655,13 @@ namespace StreamChat.Tests.StatefulClient
         {
             var channel = await CreateUniqueTempChannelAsync();
             await channel.FreezeAsync();
+            
+            await WaitWhileFalseAsync(() => channel.Frozen);
             Assert.IsTrue(channel.Frozen);
+            
             await channel.UnfreezeAsync();
+            
+            await WaitWhileTrueAsync(() => channel.Frozen);
             Assert.IsFalse(channel.Frozen);
             
             await channel.SendNewMessageAsync("MessageAfterUnfrozenChannel");
