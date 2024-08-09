@@ -405,10 +405,10 @@ namespace StreamChat.Core.StatefulModels
         {
             StreamAsserts.AssertNotNull(userIds, nameof(userIds));
 
-            var membersRequest = new List<ChannelMemberRequestInternalDTO>();
+            var membersRequest = new List<ChannelMemberInternalDTO>();
             foreach (var u in userIds)
             {
-                membersRequest.Add(new ChannelMemberRequestInternalDTO
+                membersRequest.Add(new ChannelMemberInternalDTO
                 {
                     UserId = u,
                 });
@@ -468,10 +468,10 @@ namespace StreamChat.Core.StatefulModels
         {
             StreamAsserts.AssertNotNull(userIds, nameof(userIds));
 
-            var invites = new List<ChannelMemberRequestInternalDTO>();
+            var invites = new List<ChannelMemberInternalDTO>();
             foreach (var uid in userIds)
             {
-                invites.Add(new ChannelMemberRequestInternalDTO
+                invites.Add(new ChannelMemberInternalDTO
                 {
                     UserId = uid
                 });
@@ -707,7 +707,7 @@ namespace StreamChat.Core.StatefulModels
                 return;
             }
 
-            message.TryUpdateFromDto(dto.Message, Cache);
+            message.TryUpdateFromDto<MessageInternalDTO, StreamMessage>(dto.Message, Cache);
             MessageUpdated?.Invoke(this, message);
         }
 
@@ -1083,18 +1083,12 @@ namespace StreamChat.Core.StatefulModels
 
             return LowLevelClient.InternalModerationApi.BanUserAsync(new BanRequestInternalDTO
             {
-                //BannedBy = null,
-                //BannedById = null,
-                Id = Id,
+                ChannelCid = Cid,
                 IpBan = isIpBan,
                 Reason = reason,
                 Shadow = isShadowBan,
                 TargetUserId = user.Id,
                 Timeout = timeoutMinutes,
-                Type = Type,
-                //User = null,
-                //UserId = null,
-                //AdditionalProperties = null
             });
         }
 

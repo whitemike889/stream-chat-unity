@@ -1,10 +1,12 @@
 ﻿using System;
 using StreamChat.Core.Helpers;
 using StreamChat.Core.InternalDTO.Models;
+using StreamChat.Core.InternalDTO.Responses;
 
 namespace StreamChat.Core.LowLevelClient.Models
 {
-    public class ChannelMember : ModelBase, ILoadableFrom<ChannelMemberInternalDTO, ChannelMember>, ISavableTo<ChannelMemberInternalDTO>
+    public class ChannelMember : ModelBase, ILoadableFrom<ChannelMemberInternalDTO, ChannelMember>,
+        ILoadableFrom<ChannelMemberResponseInternalDTO, ChannelMember>, ISavableTo<ChannelMemberInternalDTO>
     {
         /// <summary>
         /// Expiration date of the ban
@@ -79,9 +81,27 @@ namespace StreamChat.Core.LowLevelClient.Models
             InviteRejectedAt = dto.InviteRejectedAt;
             Invited = dto.Invited;
             IsModerator = dto.IsModerator;
-#pragma warning disable 0618
-            Role = dto.Role;
-#pragma warning restore 0618
+            ShadowBanned = dto.ShadowBanned;
+            UpdatedAt = dto.UpdatedAt;
+            User = User.TryLoadFromDto<UserObjectInternalDTO, User>(dto.User);
+            UserId = dto.UserId;
+            AdditionalProperties = dto.AdditionalProperties;
+
+            return this;
+        }
+
+        ChannelMember ILoadableFrom<ChannelMemberResponseInternalDTO, ChannelMember>.LoadFromDto(
+            ChannelMemberResponseInternalDTO dto)
+        {
+            BanExpires = dto.BanExpires;
+            Banned = dto.Banned;
+            ChannelRole = dto.ChannelRole;
+            CreatedAt = dto.CreatedAt;
+            DeletedAt = dto.DeletedAt;
+            InviteAcceptedAt = dto.InviteAcceptedAt;
+            InviteRejectedAt = dto.InviteRejectedAt;
+            Invited = dto.Invited;
+            IsModerator = dto.IsModerator;
             ShadowBanned = dto.ShadowBanned;
             UpdatedAt = dto.UpdatedAt;
             User = User.TryLoadFromDto<UserObjectInternalDTO, User>(dto.User);
@@ -104,9 +124,6 @@ namespace StreamChat.Core.LowLevelClient.Models
                 InviteRejectedAt = InviteRejectedAt,
                 Invited = Invited,
                 IsModerator = IsModerator,
-#pragma warning disable 0618
-                Role = Role,
-#pragma warning restore 0618
                 ShadowBanned = ShadowBanned.GetValueOrDefault(),
                 UpdatedAt = UpdatedAt.GetValueOrDefault(),
                 User = User.TrySaveToDto(),
