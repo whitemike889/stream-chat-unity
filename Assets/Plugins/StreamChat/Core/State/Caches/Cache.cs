@@ -41,6 +41,7 @@ namespace StreamChat.Core.State.Caches
             });
 
             Messages.RegisterDtoIdMapping<StreamMessage, MessageInternalDTO>(dto => dto.Id);
+            Messages.RegisterDtoIdMapping<StreamMessage, MessageResponseInternalDTO>(dto => dto.Id);
         }
 
         public ICacheRepository<StreamChannel> Channels { get; }
