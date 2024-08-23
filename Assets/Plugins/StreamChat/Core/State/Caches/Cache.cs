@@ -26,6 +26,7 @@ namespace StreamChat.Core.State.Caches
             Users.RegisterDtoIdMapping<StreamUser, UserObjectInternalDTO>(dto => dto.Id);
             Users.RegisterDtoIdMapping<StreamUser, UserResponseInternalDTO>(dto => dto.Id);
             Users.RegisterDtoIdMapping<StreamUser, OwnUserInternalDTO>(dto => dto.Id);
+            Users.RegisterDtoIdMapping<StreamUser, FullUserResponseInternalDTO>(dto => dto.Id);
 
             LocalUser.RegisterDtoIdMapping<StreamLocalUserData, OwnUserInternalDTO>(dto => dto.Id);
 
