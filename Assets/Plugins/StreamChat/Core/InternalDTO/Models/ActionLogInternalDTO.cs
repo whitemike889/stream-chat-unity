@@ -28,8 +28,14 @@ namespace StreamChat.Core.InternalDTO.Models
         [Newtonsoft.Json.JsonProperty("reason", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Reason { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("review_queue_item", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public ReviewQueueItemInternalDTO ReviewQueueItem { get; set; }
+
         [Newtonsoft.Json.JsonProperty("review_queue_item_id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ReviewQueueItemId { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("target_user", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public UserObjectInternalDTO TargetUser { get; set; }
 
         [Newtonsoft.Json.JsonProperty("target_user_id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TargetUserId { get; set; }

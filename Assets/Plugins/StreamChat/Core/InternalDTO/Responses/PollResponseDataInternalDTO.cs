@@ -32,7 +32,7 @@ namespace StreamChat.Core.InternalDTO.Responses
         public System.DateTimeOffset CreatedAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("created_by", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public UserObjectInternalDTO CreatedBy { get; set; }
+        public UserResponseInternalDTO CreatedBy { get; set; }
 
         [Newtonsoft.Json.JsonProperty("created_by_id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string CreatedById { get; set; }

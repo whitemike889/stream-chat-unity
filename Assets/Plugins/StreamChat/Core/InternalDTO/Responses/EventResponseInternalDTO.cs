@@ -5,22 +5,25 @@
 //----------------------
 
 
-using StreamChat.Core.InternalDTO.Responses;
+using StreamChat.Core.InternalDTO.Requests;
 using StreamChat.Core.InternalDTO.Events;
 using StreamChat.Core.InternalDTO.Models;
 
-namespace StreamChat.Core.InternalDTO.Requests
+namespace StreamChat.Core.InternalDTO.Responses
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.5.0 (NJsonSchema v10.6.6.0 (Newtonsoft.Json v9.0.0.0))")]
-    internal partial class CreateGuestRequestInternalDTO
+    internal partial class EventResponseInternalDTO
     {
         /// <summary>
-        /// User object which server acts upon
+        /// Duration of the request in milliseconds
         /// </summary>
-        [Newtonsoft.Json.JsonProperty("user", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public UserRequestInternalDTO User { get; set; } = new UserRequestInternalDTO();
+        [Newtonsoft.Json.JsonProperty("duration", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Duration { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("event", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public object Event { get; set; }
 
         private System.Collections.Generic.Dictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

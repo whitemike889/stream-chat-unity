@@ -26,7 +26,7 @@ namespace StreamChat.Core.InternalDTO.Responses
         /// Array of users as result of filters applied.
         /// </summary>
         [Newtonsoft.Json.JsonProperty("users", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.List<UserResponseInternalDTO> Users { get; set; }
+        public System.Collections.Generic.List<FullUserResponseInternalDTO> Users { get; set; } = new System.Collections.Generic.List<FullUserResponseInternalDTO>();
 
         private System.Collections.Generic.Dictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

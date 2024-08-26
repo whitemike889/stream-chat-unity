@@ -47,7 +47,7 @@ namespace StreamChat.Core.InternalDTO.Responses
         public System.Collections.Generic.List<SegmentInternalDTO> Segments { get; set; } = new System.Collections.Generic.List<SegmentInternalDTO>();
 
         [Newtonsoft.Json.JsonProperty("sender", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public UserObjectInternalDTO Sender { get; set; }
+        public UserResponseInternalDTO Sender { get; set; }
 
         [Newtonsoft.Json.JsonProperty("sender_id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string SenderId { get; set; }
@@ -74,7 +74,7 @@ namespace StreamChat.Core.InternalDTO.Responses
         public System.Collections.Generic.List<string> UserIds { get; set; } = new System.Collections.Generic.List<string>();
 
         [Newtonsoft.Json.JsonProperty("users", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.List<UserObjectInternalDTO> Users { get; set; } = new System.Collections.Generic.List<UserObjectInternalDTO>();
+        public System.Collections.Generic.List<UserResponseInternalDTO> Users { get; set; } = new System.Collections.Generic.List<UserResponseInternalDTO>();
 
         private System.Collections.Generic.Dictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

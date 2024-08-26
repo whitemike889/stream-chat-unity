@@ -17,6 +17,12 @@ namespace StreamChat.Core.InternalDTO.Responses
     internal partial class ThreadResponseInternalDTO
     {
         /// <summary>
+        /// Active Participant Count
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("active_participant_count", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? ActiveParticipantCount { get; set; }
+
+        /// <summary>
         /// Channel
         /// </summary>
         [Newtonsoft.Json.JsonProperty("channel", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]

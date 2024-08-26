@@ -20,7 +20,7 @@ namespace StreamChat.Core.LowLevelClient.Responses
         UsersResponse ILoadableFrom<QueryUsersResponseInternalDTO, UsersResponse>.LoadFromDto(QueryUsersResponseInternalDTO dto)
         {
             Duration = dto.Duration;
-            Users = Users.TryLoadFromDtoCollection<UserResponseInternalDTO, User>(dto.Users);
+            Users = Users.TryLoadFromDtoCollection(dto.Users);
             AdditionalProperties = dto.AdditionalProperties;
 
             return this;
