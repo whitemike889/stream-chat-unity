@@ -62,11 +62,20 @@ namespace StreamChat.Core.LowLevelClient.Requests
 
         BanRequestInternalDTO ISavableTo<BanRequestInternalDTO>.SaveToDto()
         {
+            string GetCid()
+            {
+                if(string.IsNullOrEmpty(ChannelCid) && !string.IsNullOrEmpty(Id) && !string.IsNullOrEmpty(Type))
+                {
+                    return Type + ":" + Id;
+                }
+
+                return ChannelCid;
+            }
             return new BanRequestInternalDTO
             {
                 BannedBy = BannedBy.TrySaveToDto<UserRequestInternalDTO>(),
                 BannedById = BannedById,
-                ChannelCid = ChannelCid,
+                ChannelCid = GetCid(),
                 IpBan = IpBan,
                 Reason = Reason,
                 Shadow = Shadow,
