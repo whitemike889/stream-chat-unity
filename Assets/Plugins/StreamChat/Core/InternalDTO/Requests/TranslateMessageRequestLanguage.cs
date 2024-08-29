@@ -14,175 +14,86 @@ namespace StreamChat.Core.InternalDTO.Requests
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum TranslateMessageRequestLanguage
+
+    internal struct TranslateMessageRequestLanguage : System.IEquatable<TranslateMessageRequestLanguage>
     {
+        public TranslateMessageRequestLanguage(string value)
+        {
+            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+        }
 
-        [System.Runtime.Serialization.EnumMember(Value = @"af")]
-        Af = 0,
+        public static readonly TranslateMessageRequestLanguage Af = new TranslateMessageRequestLanguage("af");
+        public static readonly TranslateMessageRequestLanguage Sq = new TranslateMessageRequestLanguage("sq");
+        public static readonly TranslateMessageRequestLanguage Am = new TranslateMessageRequestLanguage("am");
+        public static readonly TranslateMessageRequestLanguage Ar = new TranslateMessageRequestLanguage("ar");
+        public static readonly TranslateMessageRequestLanguage Az = new TranslateMessageRequestLanguage("az");
+        public static readonly TranslateMessageRequestLanguage Bn = new TranslateMessageRequestLanguage("bn");
+        public static readonly TranslateMessageRequestLanguage Bs = new TranslateMessageRequestLanguage("bs");
+        public static readonly TranslateMessageRequestLanguage Bg = new TranslateMessageRequestLanguage("bg");
+        public static readonly TranslateMessageRequestLanguage Zh = new TranslateMessageRequestLanguage("zh");
+        public static readonly TranslateMessageRequestLanguage ZhTW = new TranslateMessageRequestLanguage("zh-TW");
+        public static readonly TranslateMessageRequestLanguage Hr = new TranslateMessageRequestLanguage("hr");
+        public static readonly TranslateMessageRequestLanguage Cs = new TranslateMessageRequestLanguage("cs");
+        public static readonly TranslateMessageRequestLanguage Da = new TranslateMessageRequestLanguage("da");
+        public static readonly TranslateMessageRequestLanguage FaAF = new TranslateMessageRequestLanguage("fa-AF");
+        public static readonly TranslateMessageRequestLanguage Nl = new TranslateMessageRequestLanguage("nl");
+        public static readonly TranslateMessageRequestLanguage En = new TranslateMessageRequestLanguage("en");
+        public static readonly TranslateMessageRequestLanguage Et = new TranslateMessageRequestLanguage("et");
+        public static readonly TranslateMessageRequestLanguage Fi = new TranslateMessageRequestLanguage("fi");
+        public static readonly TranslateMessageRequestLanguage Fr = new TranslateMessageRequestLanguage("fr");
+        public static readonly TranslateMessageRequestLanguage FrCA = new TranslateMessageRequestLanguage("fr-CA");
+        public static readonly TranslateMessageRequestLanguage Ka = new TranslateMessageRequestLanguage("ka");
+        public static readonly TranslateMessageRequestLanguage De = new TranslateMessageRequestLanguage("de");
+        public static readonly TranslateMessageRequestLanguage El = new TranslateMessageRequestLanguage("el");
+        public static readonly TranslateMessageRequestLanguage Ha = new TranslateMessageRequestLanguage("ha");
+        public static readonly TranslateMessageRequestLanguage He = new TranslateMessageRequestLanguage("he");
+        public static readonly TranslateMessageRequestLanguage Hi = new TranslateMessageRequestLanguage("hi");
+        public static readonly TranslateMessageRequestLanguage Hu = new TranslateMessageRequestLanguage("hu");
+        public static readonly TranslateMessageRequestLanguage Id = new TranslateMessageRequestLanguage("id");
+        public static readonly TranslateMessageRequestLanguage It = new TranslateMessageRequestLanguage("it");
+        public static readonly TranslateMessageRequestLanguage Ja = new TranslateMessageRequestLanguage("ja");
+        public static readonly TranslateMessageRequestLanguage Ko = new TranslateMessageRequestLanguage("ko");
+        public static readonly TranslateMessageRequestLanguage Lv = new TranslateMessageRequestLanguage("lv");
+        public static readonly TranslateMessageRequestLanguage Ms = new TranslateMessageRequestLanguage("ms");
+        public static readonly TranslateMessageRequestLanguage No = new TranslateMessageRequestLanguage("no");
+        public static readonly TranslateMessageRequestLanguage Fa = new TranslateMessageRequestLanguage("fa");
+        public static readonly TranslateMessageRequestLanguage Ps = new TranslateMessageRequestLanguage("ps");
+        public static readonly TranslateMessageRequestLanguage Pl = new TranslateMessageRequestLanguage("pl");
+        public static readonly TranslateMessageRequestLanguage Pt = new TranslateMessageRequestLanguage("pt");
+        public static readonly TranslateMessageRequestLanguage Ro = new TranslateMessageRequestLanguage("ro");
+        public static readonly TranslateMessageRequestLanguage Ru = new TranslateMessageRequestLanguage("ru");
+        public static readonly TranslateMessageRequestLanguage Sr = new TranslateMessageRequestLanguage("sr");
+        public static readonly TranslateMessageRequestLanguage Sk = new TranslateMessageRequestLanguage("sk");
+        public static readonly TranslateMessageRequestLanguage Sl = new TranslateMessageRequestLanguage("sl");
+        public static readonly TranslateMessageRequestLanguage So = new TranslateMessageRequestLanguage("so");
+        public static readonly TranslateMessageRequestLanguage Es = new TranslateMessageRequestLanguage("es");
+        public static readonly TranslateMessageRequestLanguage EsMX = new TranslateMessageRequestLanguage("es-MX");
+        public static readonly TranslateMessageRequestLanguage Sw = new TranslateMessageRequestLanguage("sw");
+        public static readonly TranslateMessageRequestLanguage Sv = new TranslateMessageRequestLanguage("sv");
+        public static readonly TranslateMessageRequestLanguage Tl = new TranslateMessageRequestLanguage("tl");
+        public static readonly TranslateMessageRequestLanguage Ta = new TranslateMessageRequestLanguage("ta");
+        public static readonly TranslateMessageRequestLanguage Th = new TranslateMessageRequestLanguage("th");
+        public static readonly TranslateMessageRequestLanguage Tr = new TranslateMessageRequestLanguage("tr");
+        public static readonly TranslateMessageRequestLanguage Uk = new TranslateMessageRequestLanguage("uk");
+        public static readonly TranslateMessageRequestLanguage Ur = new TranslateMessageRequestLanguage("ur");
+        public static readonly TranslateMessageRequestLanguage Vi = new TranslateMessageRequestLanguage("vi");
 
-        [System.Runtime.Serialization.EnumMember(Value = @"sq")]
-        Sq = 1,
+        public override string ToString() => _value;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"am")]
-        Am = 2,
+        public bool Equals(TranslateMessageRequestLanguage other) => _value == other._value;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"ar")]
-        Ar = 3,
+        public override bool Equals(object obj) => obj is TranslateMessageRequestLanguage other && Equals(other);
 
-        [System.Runtime.Serialization.EnumMember(Value = @"az")]
-        Az = 4,
+        public override int GetHashCode() => _value.GetHashCode();
 
-        [System.Runtime.Serialization.EnumMember(Value = @"bn")]
-        Bn = 5,
+        public static bool operator ==(TranslateMessageRequestLanguage left, TranslateMessageRequestLanguage right) => left.Equals(right);
 
-        [System.Runtime.Serialization.EnumMember(Value = @"bs")]
-        Bs = 6,
+        public static bool operator !=(TranslateMessageRequestLanguage left, TranslateMessageRequestLanguage right) => !left.Equals(right);
 
-        [System.Runtime.Serialization.EnumMember(Value = @"bg")]
-        Bg = 7,
+        public static implicit operator TranslateMessageRequestLanguage(string value) => new TranslateMessageRequestLanguage(value);
 
-        [System.Runtime.Serialization.EnumMember(Value = @"zh")]
-        Zh = 8,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"zh-TW")]
-        ZhTW = 9,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"hr")]
-        Hr = 10,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"cs")]
-        Cs = 11,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"da")]
-        Da = 12,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"fa-AF")]
-        FaAF = 13,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"nl")]
-        Nl = 14,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"en")]
-        En = 15,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"et")]
-        Et = 16,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"fi")]
-        Fi = 17,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"fr")]
-        Fr = 18,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"fr-CA")]
-        FrCA = 19,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ka")]
-        Ka = 20,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"de")]
-        De = 21,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"el")]
-        El = 22,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ha")]
-        Ha = 23,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"he")]
-        He = 24,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"hi")]
-        Hi = 25,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"hu")]
-        Hu = 26,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"id")]
-        Id = 27,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"it")]
-        It = 28,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ja")]
-        Ja = 29,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ko")]
-        Ko = 30,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"lv")]
-        Lv = 31,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ms")]
-        Ms = 32,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"no")]
-        No = 33,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"fa")]
-        Fa = 34,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ps")]
-        Ps = 35,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"pl")]
-        Pl = 36,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"pt")]
-        Pt = 37,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ro")]
-        Ro = 38,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ru")]
-        Ru = 39,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"sr")]
-        Sr = 40,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"sk")]
-        Sk = 41,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"sl")]
-        Sl = 42,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"so")]
-        So = 43,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"es")]
-        Es = 44,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"es-MX")]
-        EsMX = 45,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"sw")]
-        Sw = 46,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"sv")]
-        Sv = 47,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"tl")]
-        Tl = 48,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ta")]
-        Ta = 49,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"th")]
-        Th = 50,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"tr")]
-        Tr = 51,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"uk")]
-        Uk = 52,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ur")]
-        Ur = 53,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"vi")]
-        Vi = 54,
-
+        public static implicit operator string(TranslateMessageRequestLanguage type) => type._value;
+        
+        private readonly string _value;
     }
-
 }
-

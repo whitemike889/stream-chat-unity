@@ -1,3 +1,4 @@
+using StreamChat.Core.Helpers;
 using StreamChat.Core.InternalDTO.Models;
 using StreamChat.Core.State;
 using StreamChat.Core.State.Caches;
@@ -9,7 +10,7 @@ namespace StreamChat.Core.Responses
         /// <summary>
         /// Crop mode
         /// </summary>
-        public StreamImageCropType? Crop { get; private set; }
+        public StreamImageCropType Crop { get; private set; }
 
         /// <summary>
         /// Target image height
@@ -19,7 +20,7 @@ namespace StreamChat.Core.Responses
         /// <summary>
         /// Resize method
         /// </summary>
-        public StreamImageResizeType? Resize { get; private set; }
+        public StreamImageResizeType Resize { get; private set; }
 
         /// <summary>
         /// Target image width
@@ -28,9 +29,9 @@ namespace StreamChat.Core.Responses
 
         StreamImageSize IStateLoadableFrom<ImageSizeInternalDTO, StreamImageSize>.LoadFromDto(ImageSizeInternalDTO dto, ICache cache)
         {
-            Crop = dto.Crop?.ToStreamImageCropType();
+            Crop = Crop.TryLoadFromDto(dto.Crop.GetValueOrDefault());
             Height = dto.Height;
-            Resize = dto.Resize?.ToStreamImageResizeType();
+            Resize = Resize.TryLoadFromDto(dto.Resize.GetValueOrDefault());
             Width = dto.Width;
 
             return this;

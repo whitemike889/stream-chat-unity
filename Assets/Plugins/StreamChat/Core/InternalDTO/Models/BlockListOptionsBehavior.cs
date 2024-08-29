@@ -14,19 +14,34 @@ namespace StreamChat.Core.InternalDTO.Models
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum BlockListOptionsBehavior
+
+    internal struct BlockListOptionsBehavior : System.IEquatable<BlockListOptionsBehavior>
     {
+        public BlockListOptionsBehavior(string value)
+        {
+            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+        }
 
-        [System.Runtime.Serialization.EnumMember(Value = @"flag")]
-        Flag = 0,
+        public static readonly BlockListOptionsBehavior Flag = new BlockListOptionsBehavior("flag");
+        public static readonly BlockListOptionsBehavior Block = new BlockListOptionsBehavior("block");
+        public static readonly BlockListOptionsBehavior ShadowBlock = new BlockListOptionsBehavior("shadow_block");
 
-        [System.Runtime.Serialization.EnumMember(Value = @"block")]
-        Block = 1,
+        public override string ToString() => _value;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"shadow_block")]
-        Shadow_block = 2,
+        public bool Equals(BlockListOptionsBehavior other) => _value == other._value;
 
+        public override bool Equals(object obj) => obj is BlockListOptionsBehavior other && Equals(other);
+
+        public override int GetHashCode() => _value.GetHashCode();
+
+        public static bool operator ==(BlockListOptionsBehavior left, BlockListOptionsBehavior right) => left.Equals(right);
+
+        public static bool operator !=(BlockListOptionsBehavior left, BlockListOptionsBehavior right) => !left.Equals(right);
+
+        public static implicit operator BlockListOptionsBehavior(string value) => new BlockListOptionsBehavior(value);
+
+        public static implicit operator string(BlockListOptionsBehavior type) => type._value;
+        
+        private readonly string _value;
     }
-
 }
-

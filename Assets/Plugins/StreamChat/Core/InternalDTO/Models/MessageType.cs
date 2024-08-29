@@ -14,28 +14,37 @@ namespace StreamChat.Core.InternalDTO.Models
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum MessageType
+
+    public struct MessageType : System.IEquatable<MessageType>
     {
+        public MessageType(string value)
+        {
+            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+        }
 
-        [System.Runtime.Serialization.EnumMember(Value = @"regular")]
-        Regular = 0,
+        public static readonly MessageType Regular = new MessageType("regular");
+        public static readonly MessageType Ephemeral = new MessageType("ephemeral");
+        public static readonly MessageType Error = new MessageType("error");
+        public static readonly MessageType Reply = new MessageType("reply");
+        public static readonly MessageType System = new MessageType("system");
+        public static readonly MessageType Deleted = new MessageType("deleted");
 
-        [System.Runtime.Serialization.EnumMember(Value = @"ephemeral")]
-        Ephemeral = 1,
+        public override string ToString() => _value;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"error")]
-        Error = 2,
+        public bool Equals(MessageType other) => _value == other._value;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"reply")]
-        Reply = 3,
+        public override bool Equals(object obj) => obj is MessageType other && Equals(other);
 
-        [System.Runtime.Serialization.EnumMember(Value = @"system")]
-        System = 4,
+        public override int GetHashCode() => _value.GetHashCode();
 
-        [System.Runtime.Serialization.EnumMember(Value = @"deleted")]
-        Deleted = 5,
+        public static bool operator ==(MessageType left, MessageType right) => left.Equals(right);
 
+        public static bool operator !=(MessageType left, MessageType right) => !left.Equals(right);
+
+        public static implicit operator MessageType(string value) => new MessageType(value);
+
+        public static implicit operator string(MessageType type) => type._value;
+        
+        private readonly string _value;
     }
-
 }
-

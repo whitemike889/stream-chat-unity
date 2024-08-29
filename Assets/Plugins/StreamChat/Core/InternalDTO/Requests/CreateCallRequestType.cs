@@ -14,16 +14,33 @@ namespace StreamChat.Core.InternalDTO.Requests
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum CreateCallRequestType
+
+    internal struct CreateCallRequestType : System.IEquatable<CreateCallRequestType>
     {
+        public CreateCallRequestType(string value)
+        {
+            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+        }
 
-        [System.Runtime.Serialization.EnumMember(Value = @"audio")]
-        Audio = 0,
+        public static readonly CreateCallRequestType Audio = new CreateCallRequestType("audio");
+        public static readonly CreateCallRequestType Video = new CreateCallRequestType("video");
 
-        [System.Runtime.Serialization.EnumMember(Value = @"video")]
-        Video = 1,
+        public override string ToString() => _value;
 
+        public bool Equals(CreateCallRequestType other) => _value == other._value;
+
+        public override bool Equals(object obj) => obj is CreateCallRequestType other && Equals(other);
+
+        public override int GetHashCode() => _value.GetHashCode();
+
+        public static bool operator ==(CreateCallRequestType left, CreateCallRequestType right) => left.Equals(right);
+
+        public static bool operator !=(CreateCallRequestType left, CreateCallRequestType right) => !left.Equals(right);
+
+        public static implicit operator CreateCallRequestType(string value) => new CreateCallRequestType(value);
+
+        public static implicit operator string(CreateCallRequestType type) => type._value;
+        
+        private readonly string _value;
     }
-
 }
-

@@ -14,22 +14,35 @@ namespace StreamChat.Core.InternalDTO.Models
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum ImageResizeType
+
+    public struct ImageResizeType : System.IEquatable<ImageResizeType>
     {
+        public ImageResizeType(string value)
+        {
+            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+        }
 
-        [System.Runtime.Serialization.EnumMember(Value = @"clip")]
-        Clip = 0,
+        public static readonly ImageResizeType Clip = new ImageResizeType("clip");
+        public static readonly ImageResizeType Crop = new ImageResizeType("crop");
+        public static readonly ImageResizeType Scale = new ImageResizeType("scale");
+        public static readonly ImageResizeType Fill = new ImageResizeType("fill");
 
-        [System.Runtime.Serialization.EnumMember(Value = @"crop")]
-        Crop = 1,
+        public override string ToString() => _value;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"scale")]
-        Scale = 2,
+        public bool Equals(ImageResizeType other) => _value == other._value;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"fill")]
-        Fill = 3,
+        public override bool Equals(object obj) => obj is ImageResizeType other && Equals(other);
 
+        public override int GetHashCode() => _value.GetHashCode();
+
+        public static bool operator ==(ImageResizeType left, ImageResizeType right) => left.Equals(right);
+
+        public static bool operator !=(ImageResizeType left, ImageResizeType right) => !left.Equals(right);
+
+        public static implicit operator ImageResizeType(string value) => new ImageResizeType(value);
+
+        public static implicit operator string(ImageResizeType type) => type._value;
+        
+        private readonly string _value;
     }
-
 }
-

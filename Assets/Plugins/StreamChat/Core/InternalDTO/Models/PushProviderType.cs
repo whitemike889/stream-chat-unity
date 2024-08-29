@@ -14,22 +14,35 @@ namespace StreamChat.Core.InternalDTO.Models
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum PushProviderType
+
+    public struct PushProviderType : System.IEquatable<PushProviderType>
     {
+        public PushProviderType(string value)
+        {
+            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+        }
 
-        [System.Runtime.Serialization.EnumMember(Value = @"firebase")]
-        Firebase = 0,
+        public static readonly PushProviderType Firebase = new PushProviderType("firebase");
+        public static readonly PushProviderType Apn = new PushProviderType("apn");
+        public static readonly PushProviderType Huawei = new PushProviderType("huawei");
+        public static readonly PushProviderType Xiaomi = new PushProviderType("xiaomi");
 
-        [System.Runtime.Serialization.EnumMember(Value = @"apn")]
-        Apn = 1,
+        public override string ToString() => _value;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"huawei")]
-        Huawei = 2,
+        public bool Equals(PushProviderType other) => _value == other._value;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"xiaomi")]
-        Xiaomi = 3,
+        public override bool Equals(object obj) => obj is PushProviderType other && Equals(other);
 
+        public override int GetHashCode() => _value.GetHashCode();
+
+        public static bool operator ==(PushProviderType left, PushProviderType right) => left.Equals(right);
+
+        public static bool operator !=(PushProviderType left, PushProviderType right) => !left.Equals(right);
+
+        public static implicit operator PushProviderType(string value) => new PushProviderType(value);
+
+        public static implicit operator string(PushProviderType type) => type._value;
+        
+        private readonly string _value;
     }
-
 }
-

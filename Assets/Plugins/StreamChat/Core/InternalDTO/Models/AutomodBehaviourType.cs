@@ -14,19 +14,34 @@ namespace StreamChat.Core.InternalDTO.Models
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum AutomodBehaviourType
+
+    public struct AutomodBehaviourType : System.IEquatable<AutomodBehaviourType>
     {
+        public AutomodBehaviourType(string value)
+        {
+            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+        }
 
-        [System.Runtime.Serialization.EnumMember(Value = @"flag")]
-        Flag = 0,
+        public static readonly AutomodBehaviourType Flag = new AutomodBehaviourType("flag");
+        public static readonly AutomodBehaviourType Block = new AutomodBehaviourType("block");
+        public static readonly AutomodBehaviourType ShadowBlock = new AutomodBehaviourType("shadow_block");
 
-        [System.Runtime.Serialization.EnumMember(Value = @"block")]
-        Block = 1,
+        public override string ToString() => _value;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"shadow_block")]
-        Shadow_block = 2,
+        public bool Equals(AutomodBehaviourType other) => _value == other._value;
 
+        public override bool Equals(object obj) => obj is AutomodBehaviourType other && Equals(other);
+
+        public override int GetHashCode() => _value.GetHashCode();
+
+        public static bool operator ==(AutomodBehaviourType left, AutomodBehaviourType right) => left.Equals(right);
+
+        public static bool operator !=(AutomodBehaviourType left, AutomodBehaviourType right) => !left.Equals(right);
+
+        public static implicit operator AutomodBehaviourType(string value) => new AutomodBehaviourType(value);
+
+        public static implicit operator string(AutomodBehaviourType type) => type._value;
+        
+        private readonly string _value;
     }
-
 }
-

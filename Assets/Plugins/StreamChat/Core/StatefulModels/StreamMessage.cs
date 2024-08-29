@@ -85,7 +85,7 @@ namespace StreamChat.Core.StatefulModels
 
         public IStreamUser User { get; private set; }
         
-        public bool IsDeleted => Type == StreamMessageType.Deleted;
+        public bool IsDeleted => Type == MessageType.Deleted;
 
         //Do not update message from response, the WS event might have been processed and we would overwrite it with an old state
         public Task SoftDeleteAsync() => LowLevelClient.InternalMessageApi.DeleteMessageAsync(Id, hard: false);
@@ -221,7 +221,7 @@ namespace StreamChat.Core.StatefulModels
             Text = GetOrDefault(dto.Text, Text);
             _mentionedUsers.TryReplaceTrackedObjects(dto.MentionedUsers, cache.Users);
             _threadParticipants.TryReplaceTrackedObjects(dto.ThreadParticipants, cache.Users);
-            Type = dto.Type.TryConvertToStreamMessageType();
+            Type = Type.TryLoadFromDto<MessageType, StreamMessageType>(dto.Type.GetValueOrDefault());
             UpdatedAt = GetOrDefault(dto.UpdatedAt, UpdatedAt);
             User = cache.TryCreateOrUpdate(dto.User);
             
@@ -260,7 +260,7 @@ namespace StreamChat.Core.StatefulModels
             Text = GetOrDefault(dto.Text, Text);
             _mentionedUsers.TryReplaceTrackedObjects(dto.MentionedUsers, cache.Users);
             _threadParticipants.TryReplaceTrackedObjects(dto.ThreadParticipants, cache.Users);
-            Type = dto.Type.TryConvertToStreamMessageType();
+            Type = Type.TryLoadFromDto<MessageType, StreamMessageType>(dto.Type.GetValueOrDefault());
             UpdatedAt = GetOrDefault(dto.UpdatedAt, UpdatedAt);
             User = cache.TryCreateOrUpdate(dto.User);
             

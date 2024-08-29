@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using StreamChat.Core.InternalDTO.Models;
 using StreamChat.Core.Models;
 using StreamChat.Core.Requests;
 

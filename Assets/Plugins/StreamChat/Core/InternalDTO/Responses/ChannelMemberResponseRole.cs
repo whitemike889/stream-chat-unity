@@ -14,22 +14,35 @@ namespace StreamChat.Core.InternalDTO.Responses
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum ChannelMemberResponseRole
+
+    internal struct ChannelMemberResponseRole : System.IEquatable<ChannelMemberResponseRole>
     {
+        public ChannelMemberResponseRole(string value)
+        {
+            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+        }
 
-        [System.Runtime.Serialization.EnumMember(Value = @"member")]
-        Member = 0,
+        public static readonly ChannelMemberResponseRole Member = new ChannelMemberResponseRole("member");
+        public static readonly ChannelMemberResponseRole Moderator = new ChannelMemberResponseRole("moderator");
+        public static readonly ChannelMemberResponseRole Admin = new ChannelMemberResponseRole("admin");
+        public static readonly ChannelMemberResponseRole Owner = new ChannelMemberResponseRole("owner");
 
-        [System.Runtime.Serialization.EnumMember(Value = @"moderator")]
-        Moderator = 1,
+        public override string ToString() => _value;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"admin")]
-        Admin = 2,
+        public bool Equals(ChannelMemberResponseRole other) => _value == other._value;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"owner")]
-        Owner = 3,
+        public override bool Equals(object obj) => obj is ChannelMemberResponseRole other && Equals(other);
 
+        public override int GetHashCode() => _value.GetHashCode();
+
+        public static bool operator ==(ChannelMemberResponseRole left, ChannelMemberResponseRole right) => left.Equals(right);
+
+        public static bool operator !=(ChannelMemberResponseRole left, ChannelMemberResponseRole right) => !left.Equals(right);
+
+        public static implicit operator ChannelMemberResponseRole(string value) => new ChannelMemberResponseRole(value);
+
+        public static implicit operator string(ChannelMemberResponseRole type) => type._value;
+        
+        private readonly string _value;
     }
-
 }
-

@@ -14,16 +14,33 @@ namespace StreamChat.Core.InternalDTO.Requests
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum CreatePollRequestVotingVisibility
+
+    internal struct CreatePollRequestVotingVisibility : System.IEquatable<CreatePollRequestVotingVisibility>
     {
+        public CreatePollRequestVotingVisibility(string value)
+        {
+            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+        }
 
-        [System.Runtime.Serialization.EnumMember(Value = @"anonymous")]
-        Anonymous = 0,
+        public static readonly CreatePollRequestVotingVisibility Anonymous = new CreatePollRequestVotingVisibility("anonymous");
+        public static readonly CreatePollRequestVotingVisibility Public = new CreatePollRequestVotingVisibility("public");
 
-        [System.Runtime.Serialization.EnumMember(Value = @"public")]
-        Public = 1,
+        public override string ToString() => _value;
 
+        public bool Equals(CreatePollRequestVotingVisibility other) => _value == other._value;
+
+        public override bool Equals(object obj) => obj is CreatePollRequestVotingVisibility other && Equals(other);
+
+        public override int GetHashCode() => _value.GetHashCode();
+
+        public static bool operator ==(CreatePollRequestVotingVisibility left, CreatePollRequestVotingVisibility right) => left.Equals(right);
+
+        public static bool operator !=(CreatePollRequestVotingVisibility left, CreatePollRequestVotingVisibility right) => !left.Equals(right);
+
+        public static implicit operator CreatePollRequestVotingVisibility(string value) => new CreatePollRequestVotingVisibility(value);
+
+        public static implicit operator string(CreatePollRequestVotingVisibility type) => type._value;
+        
+        private readonly string _value;
     }
-
 }
-

@@ -14,16 +14,33 @@ namespace StreamChat.Core.InternalDTO.Requests
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum MessageRequestType
+
+    internal struct MessageRequestType : System.IEquatable<MessageRequestType>
     {
+        public MessageRequestType(string value)
+        {
+            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+        }
 
-        [System.Runtime.Serialization.EnumMember(Value = @"''regular")]
-        __regular = 0,
+        public static readonly MessageRequestType Regular = new MessageRequestType("''regular");
+        public static readonly MessageRequestType System = new MessageRequestType("system");
 
-        [System.Runtime.Serialization.EnumMember(Value = @"system")]
-        System = 1,
+        public override string ToString() => _value;
 
+        public bool Equals(MessageRequestType other) => _value == other._value;
+
+        public override bool Equals(object obj) => obj is MessageRequestType other && Equals(other);
+
+        public override int GetHashCode() => _value.GetHashCode();
+
+        public static bool operator ==(MessageRequestType left, MessageRequestType right) => left.Equals(right);
+
+        public static bool operator !=(MessageRequestType left, MessageRequestType right) => !left.Equals(right);
+
+        public static implicit operator MessageRequestType(string value) => new MessageRequestType(value);
+
+        public static implicit operator string(MessageRequestType type) => type._value;
+        
+        private readonly string _value;
     }
-
 }
-

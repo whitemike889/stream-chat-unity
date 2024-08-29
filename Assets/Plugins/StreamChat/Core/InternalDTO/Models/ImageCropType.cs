@@ -14,25 +14,36 @@ namespace StreamChat.Core.InternalDTO.Models
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum ImageCropType
+
+    public struct ImageCropType : System.IEquatable<ImageCropType>
     {
+        public ImageCropType(string value)
+        {
+            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+        }
 
-        [System.Runtime.Serialization.EnumMember(Value = @"top")]
-        Top = 0,
+        public static readonly ImageCropType Top = new ImageCropType("top");
+        public static readonly ImageCropType Bottom = new ImageCropType("bottom");
+        public static readonly ImageCropType Left = new ImageCropType("left");
+        public static readonly ImageCropType Right = new ImageCropType("right");
+        public static readonly ImageCropType Center = new ImageCropType("center");
 
-        [System.Runtime.Serialization.EnumMember(Value = @"bottom")]
-        Bottom = 1,
+        public override string ToString() => _value;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"left")]
-        Left = 2,
+        public bool Equals(ImageCropType other) => _value == other._value;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"right")]
-        Right = 3,
+        public override bool Equals(object obj) => obj is ImageCropType other && Equals(other);
 
-        [System.Runtime.Serialization.EnumMember(Value = @"center")]
-        Center = 4,
+        public override int GetHashCode() => _value.GetHashCode();
 
+        public static bool operator ==(ImageCropType left, ImageCropType right) => left.Equals(right);
+
+        public static bool operator !=(ImageCropType left, ImageCropType right) => !left.Equals(right);
+
+        public static implicit operator ImageCropType(string value) => new ImageCropType(value);
+
+        public static implicit operator string(ImageCropType type) => type._value;
+        
+        private readonly string _value;
     }
-
 }
-

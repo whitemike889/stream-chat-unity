@@ -14,19 +14,34 @@ namespace StreamChat.Core.InternalDTO.Models
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum AutomodType
+
+    public readonly struct AutomodType : System.IEquatable<AutomodType>
     {
+        public AutomodType(string value)
+        {
+            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+        }
 
-        [System.Runtime.Serialization.EnumMember(Value = @"disabled")]
-        Disabled = 0,
+        public static readonly AutomodType Disabled = new AutomodType("disabled");
+        public static readonly AutomodType Simple = new AutomodType("simple");
+        public static readonly AutomodType AI = new AutomodType("AI");
 
-        [System.Runtime.Serialization.EnumMember(Value = @"simple")]
-        Simple = 1,
+        public override string ToString() => _value;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"AI")]
-        AI = 2,
+        public bool Equals(AutomodType other) => _value == other._value;
 
+        public override bool Equals(object obj) => obj is AutomodType other && Equals(other);
+
+        public override int GetHashCode() => _value.GetHashCode();
+
+        public static bool operator ==(AutomodType left, AutomodType right) => left.Equals(right);
+
+        public static bool operator !=(AutomodType left, AutomodType right) => !left.Equals(right);
+
+        public static implicit operator AutomodType(string value) => new AutomodType(value);
+
+        public static implicit operator string(AutomodType type) => type._value;
+        
+        private readonly string _value;
     }
-
 }
-
