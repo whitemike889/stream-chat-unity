@@ -1,4 +1,4 @@
-﻿namespace StreamChat.Core
+﻿namespace StreamChat.Core.LowLevelClient
 {
     /// <summary>
     /// Supports loading object from DTO of a given type

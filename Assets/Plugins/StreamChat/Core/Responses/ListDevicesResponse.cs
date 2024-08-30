@@ -1,5 +1,6 @@
 ﻿using StreamChat.Core.Helpers;
 using StreamChat.Core.InternalDTO.Responses;
+using StreamChat.Core.LowLevelClient;
 using StreamChat.Core.LowLevelClient.Models;
 using StreamChat.Core.LowLevelClient.Responses;
 
