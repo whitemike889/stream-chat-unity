@@ -1,4 +1,4 @@
-﻿using StreamChat.Core.InternalDTO.Models;
+﻿using StreamChat.Core.Helpers;
 using StreamChat.Core.InternalDTO.Requests;
 using StreamChat.Core.LowLevelClient.Models;
 
@@ -9,7 +9,7 @@ namespace StreamChat.Core.LowLevelClient.Requests
         /// <summary>
         /// Crop mode
         /// </summary>
-        public ImageCropType? Crop { get; set; }
+        public ImageCropType Crop { get; set; }
 
         /// <summary>
         /// Target image height
@@ -19,7 +19,7 @@ namespace StreamChat.Core.LowLevelClient.Requests
         /// <summary>
         /// Resize method
         /// </summary>
-        public ImageResizeType? Resize { get; set; }
+        public ImageResizeType Resize { get; set; }
 
         /// <summary>
         /// Target image width
@@ -29,9 +29,9 @@ namespace StreamChat.Core.LowLevelClient.Requests
         ImageSizeRequestInternalDTO ISavableTo<ImageSizeRequestInternalDTO>.SaveToDto() =>
             new ImageSizeRequestInternalDTO()
             {
-                Crop = Crop,
+                Crop = Crop.TrySaveToDto(),
                 Height = Height,
-                Resize = Resize,
+                Resize = Resize.TrySaveToDto(),
                 Width = Width,
                 AdditionalProperties = AdditionalProperties
             };

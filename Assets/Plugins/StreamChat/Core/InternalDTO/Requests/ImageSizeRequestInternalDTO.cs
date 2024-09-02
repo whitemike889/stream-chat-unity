@@ -21,8 +21,8 @@ namespace StreamChat.Core.InternalDTO.Requests
         /// Crop mode
         /// </summary>
         [Newtonsoft.Json.JsonProperty("crop", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public ImageCropType? Crop { get; set; }
+        [Newtonsoft.Json.JsonConverter(typeof(StreamChat.Core.Serialization.EnumeratedStructConverter<ImageCropTypeInternalDTO>))]
+        public ImageCropTypeInternalDTO Crop { get; set; }
 
         /// <summary>
         /// Target image height
@@ -34,8 +34,8 @@ namespace StreamChat.Core.InternalDTO.Requests
         /// Resize method
         /// </summary>
         [Newtonsoft.Json.JsonProperty("resize", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public ImageResizeType? Resize { get; set; }
+        [Newtonsoft.Json.JsonConverter(typeof(StreamChat.Core.Serialization.EnumeratedStructConverter<ImageResizeTypeInternalDTO>))]
+        public ImageResizeTypeInternalDTO Resize { get; set; }
 
         /// <summary>
         /// Target image width
