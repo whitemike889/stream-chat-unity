@@ -1,6 +1,6 @@
-﻿using StreamChat.Core.LowLevelClient;
+﻿using StreamChat.Core.InternalDTO.Models;
 
-namespace StreamChat.Core.InternalDTO.Models
+namespace StreamChat.Core.LowLevelClient.Models
 {
     public readonly struct ImageCropType : System.IEquatable<ImageCropType>, ILoadableFrom<ImageCropTypeInternalDTO, ImageCropType>, ISavableTo<ImageCropTypeInternalDTO>
     {
