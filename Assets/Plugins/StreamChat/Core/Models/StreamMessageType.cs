@@ -5,7 +5,7 @@ using StreamChat.Core.LowLevelClient;
 namespace StreamChat.Core.Models
 {
     public readonly struct StreamMessageType : IEquatable<StreamMessageType>,
-        ILoadableFrom<MessageType, StreamMessageType>, ISavableTo<MessageType>
+        ILoadableFrom<MessageTypeInternalDTO, StreamMessageType>, ISavableTo<MessageTypeInternalDTO>
     {
         public StreamMessageType(string value)
         {
@@ -23,7 +23,7 @@ namespace StreamChat.Core.Models
 
         public bool Equals(StreamMessageType other) => _value == other._value;
 
-        public override bool Equals(object obj) => obj is MessageType other && Equals(other);
+        public override bool Equals(object obj) => obj is StreamMessageType other && Equals(other);
 
         public override int GetHashCode() => _value.GetHashCode();
 
@@ -35,9 +35,9 @@ namespace StreamChat.Core.Models
 
         public static implicit operator string(StreamMessageType type) => type._value;
 
-        StreamMessageType ILoadableFrom<MessageType, StreamMessageType>.LoadFromDto(MessageType dto) => new StreamMessageType(dto);
+        StreamMessageType ILoadableFrom<MessageTypeInternalDTO, StreamMessageType>.LoadFromDto(MessageTypeInternalDTO dto) => new StreamMessageType(dto);
 
-        MessageType ISavableTo<MessageType>.SaveToDto() => new MessageType(_value);
+        MessageTypeInternalDTO ISavableTo<MessageTypeInternalDTO>.SaveToDto() => new MessageTypeInternalDTO(_value);
 
         private readonly string _value;
     }

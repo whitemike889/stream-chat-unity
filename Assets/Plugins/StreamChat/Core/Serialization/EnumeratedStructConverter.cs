@@ -8,7 +8,7 @@ namespace StreamChat.Core.Serialization
     /// Json converter to serialize and deserialize <see cref="IEnumeratedStruct"/>
     /// </summary>
     /// <typeparam name="TType">Specific type of the struct. This should be provided in a decorator</typeparam>
-    public class EnumeratedStructConverter<TType> : JsonConverter 
+    internal class EnumeratedStructConverter<TType> : JsonConverter 
         where TType : struct, IEnumeratedStruct<TType>
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

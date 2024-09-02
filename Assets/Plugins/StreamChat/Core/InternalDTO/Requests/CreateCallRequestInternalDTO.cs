@@ -23,8 +23,8 @@ namespace StreamChat.Core.InternalDTO.Requests
         public System.Collections.Generic.Dictionary<string, object> Options { get; set; }
 
         [Newtonsoft.Json.JsonProperty("type", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public CreateCallRequestType Type { get; set; }
+        [Newtonsoft.Json.JsonConverter(typeof(StreamChat.Core.Serialization.EnumeratedStructConverter<CreateCallRequestTypeInternalDTO>))]
+        public CreateCallRequestTypeInternalDTO Type { get; set; }
 
         private System.Collections.Generic.Dictionary<string, object> _additionalProperties;
 

@@ -1,4 +1,6 @@
-﻿using StreamChat.Core.InternalDTO.Models;
+﻿using StreamChat.Core.Helpers;
+using StreamChat.Core.InternalDTO.Models;
+using StreamChat.Core.LowLevelClient.Models;
 using StreamChat.Core.State;
 using StreamChat.Core.State.Caches;
 
@@ -9,12 +11,12 @@ namespace StreamChat.Core.Models
         /// <summary>
         /// Enables automatic message moderation
         /// </summary>
-        public AutomodType Automod { get; private set; }
+        public StreamAutomodType Automod { get; private set; }
 
         /// <summary>
         /// Sets behavior of automatic moderation
         /// </summary>
-        public AutomodBehaviourType? AutomodBehavior { get; private set; }
+        public StreamAutomodBehaviourType AutomodBehavior { get; private set; }
 
         public StreamThresholds AutomodThresholds { get; private set; }
 
@@ -26,7 +28,7 @@ namespace StreamChat.Core.Models
         /// <summary>
         /// Sets behavior of blocklist
         /// </summary>
-        public AutomodBehaviourType? BlocklistBehavior { get; private set; }
+        public StreamAutomodBehaviourType BlocklistBehavior { get; private set; }
 
         /// <summary>
         /// List of commands that channel supports
@@ -124,11 +126,11 @@ namespace StreamChat.Core.Models
 
         StreamChannelConfig IStateLoadableFrom<ChannelConfigWithInfoInternalDTO, StreamChannelConfig>.LoadFromDto(ChannelConfigWithInfoInternalDTO dto, ICache cache)
         {
-            Automod = dto.Automod;
-            AutomodBehavior = dto.AutomodBehavior;
+            Automod = Automod.TryLoadFromDto(dto.Automod);
+            AutomodBehavior = AutomodBehavior.TryLoadFromDto(dto.AutomodBehavior);
             AutomodThresholds = AutomodThresholds.TryLoadFromDto(dto.AutomodThresholds, cache);
             Blocklist = dto.Blocklist;
-            BlocklistBehavior = dto.BlocklistBehavior;
+            BlocklistBehavior = BlocklistBehavior.TryLoadFromDto(dto.BlocklistBehavior);
             Commands = Commands.TryLoadFromDtoCollection(dto.Commands, cache);
             ConnectEvents = dto.ConnectEvents;
             CreatedAt = dto.CreatedAt;

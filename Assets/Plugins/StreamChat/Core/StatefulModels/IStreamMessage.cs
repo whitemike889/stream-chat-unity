@@ -163,7 +163,7 @@ namespace StreamChat.Core.StatefulModels
         /// <summary>
         /// Contains type of the message
         /// </summary>
-        StreamMessageType? Type { get; }
+        StreamMessageType Type { get; }
 
         /// <summary>
         /// Date/time of the last update

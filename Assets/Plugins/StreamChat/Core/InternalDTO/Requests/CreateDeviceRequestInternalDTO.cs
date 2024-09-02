@@ -26,8 +26,8 @@ namespace StreamChat.Core.InternalDTO.Requests
         /// Push provider
         /// </summary>
         [Newtonsoft.Json.JsonProperty("push_provider", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public PushProviderType PushProvider { get; set; }
+        [Newtonsoft.Json.JsonConverter(typeof(StreamChat.Core.Serialization.EnumeratedStructConverter<PushProviderTypeInternalDTO>))]
+        public PushProviderTypeInternalDTO PushProvider { get; set; }
 
         /// <summary>
         /// Push provider name

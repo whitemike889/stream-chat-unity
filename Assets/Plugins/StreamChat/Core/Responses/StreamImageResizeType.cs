@@ -4,7 +4,7 @@ using StreamChat.Core.LowLevelClient;
 namespace StreamChat.Core.Responses
 {
     public readonly struct StreamImageResizeType : System.IEquatable<StreamImageResizeType>,
-        ILoadableFrom<ImageResizeType, StreamImageResizeType>, ISavableTo<ImageResizeType>
+        ILoadableFrom<ImageResizeTypeInternalDTO, StreamImageResizeType>, ISavableTo<ImageResizeTypeInternalDTO>
     {
         private readonly string _value;
 
@@ -35,9 +35,9 @@ namespace StreamChat.Core.Responses
 
         public static implicit operator string(StreamImageResizeType type) => type._value;
 
-        StreamImageResizeType ILoadableFrom<ImageResizeType, StreamImageResizeType>.LoadFromDto(ImageResizeType dto) => new StreamImageResizeType(dto.ToString());
+        StreamImageResizeType ILoadableFrom<ImageResizeTypeInternalDTO, StreamImageResizeType>.LoadFromDto(ImageResizeTypeInternalDTO dto) => new StreamImageResizeType(dto.ToString());
 
-        ImageResizeType ISavableTo<ImageResizeType>.SaveToDto() => new ImageResizeType(_value);
+        ImageResizeTypeInternalDTO ISavableTo<ImageResizeTypeInternalDTO>.SaveToDto() => new ImageResizeTypeInternalDTO(_value);
     }
 
 }

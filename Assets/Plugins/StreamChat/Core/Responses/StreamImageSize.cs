@@ -29,9 +29,9 @@ namespace StreamChat.Core.Responses
 
         StreamImageSize IStateLoadableFrom<ImageSizeInternalDTO, StreamImageSize>.LoadFromDto(ImageSizeInternalDTO dto, ICache cache)
         {
-            Crop = Crop.TryLoadFromDto(dto.Crop.GetValueOrDefault());
+            Crop = Crop.TryLoadFromDto(dto.Crop);
             Height = dto.Height;
-            Resize = Resize.TryLoadFromDto(dto.Resize.GetValueOrDefault());
+            Resize = Resize.TryLoadFromDto(dto.Resize);
             Width = dto.Width;
 
             return this;

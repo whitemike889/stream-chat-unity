@@ -1,9 +1,8 @@
-﻿using StreamChat.Core.InternalDTO.Models;
+﻿using StreamChat.Core.Helpers;
 using StreamChat.Core.InternalDTO.Requests;
-using StreamChat.Core.LowLevelClient;
-using StreamChat.Core.LowLevelClient.Requests;
+using StreamChat.Core.LowLevelClient.Models;
 
-namespace StreamChat.Core.Requests
+namespace StreamChat.Core.LowLevelClient.Requests
 {
     public partial class CreateDeviceRequest : RequestObjectBase, ISavableTo<CreateDeviceRequestInternalDTO>
     {
@@ -17,7 +16,7 @@ namespace StreamChat.Core.Requests
             => new CreateDeviceRequestInternalDTO
             {
                 Id = Id,
-                PushProvider = PushProvider,
+                PushProvider = PushProvider.TrySaveToDto(),
                 PushProviderName = PushProviderName,
             };
     }

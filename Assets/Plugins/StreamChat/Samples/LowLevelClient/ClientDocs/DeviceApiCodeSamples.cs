@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using StreamChat.Core.InternalDTO.Models;
 using StreamChat.Core.LowLevelClient;
-using StreamChat.Core.Requests;
+using StreamChat.Core.LowLevelClient.Models;
+using StreamChat.Core.LowLevelClient.Requests;
 using UnityEngine;
 
 namespace StreamChat.Samples.LowLevelClient.ClientDocs

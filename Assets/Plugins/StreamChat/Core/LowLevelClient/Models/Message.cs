@@ -161,7 +161,7 @@ namespace StreamChat.Core.LowLevelClient.Models
         /// <summary>
         /// Contains type of the message
         /// </summary>
-        public MessageType? Type { get; set; }
+        public MessageType Type { get; set; }
 
         /// <summary>
         /// Date/time of the last update
@@ -205,7 +205,7 @@ namespace StreamChat.Core.LowLevelClient.Models
             Silent = dto.Silent;
             Text = dto.Text;
             ThreadParticipants = ThreadParticipants.TryLoadFromDtoCollection(dto.ThreadParticipants);
-            Type = dto.Type;
+            Type = Type.TryLoadFromDto(dto.Type);
             UpdatedAt = dto.UpdatedAt;
             User = User.TryLoadFromDto<UserObjectInternalDTO, User>(dto.User);
             AdditionalProperties = dto.AdditionalProperties;
@@ -245,7 +245,7 @@ namespace StreamChat.Core.LowLevelClient.Models
             Silent = dto.Silent;
             Text = dto.Text;
             ThreadParticipants = ThreadParticipants.TryLoadFromDtoCollection(dto.ThreadParticipants);
-            Type = dto.Type;
+            Type = Type.TryLoadFromDto(dto.Type);
             UpdatedAt = dto.UpdatedAt;
             User = User.TryLoadFromDto<UserObjectInternalDTO, User>(dto.User);
             AdditionalProperties = dto.AdditionalProperties;
@@ -285,7 +285,7 @@ namespace StreamChat.Core.LowLevelClient.Models
             Silent = dto.Silent;
             Text = dto.Text;
             ThreadParticipants = ThreadParticipants.TryLoadFromDtoCollection(dto.ThreadParticipants);
-            Type = dto.Type;
+            Type = Type.TryLoadFromDto(dto.Type);
             UpdatedAt = dto.UpdatedAt;
             User = User.TryLoadFromDto<UserResponseInternalDTO, User>(dto.User);
             AdditionalProperties = dto.AdditionalProperties;

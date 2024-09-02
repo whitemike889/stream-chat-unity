@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using StreamChat.Core.Helpers;
 using StreamChat.Core.InternalDTO.Responses;
 using StreamChat.Core.LowLevelClient.API.Internal;
+using StreamChat.Core.LowLevelClient.Requests;
 using StreamChat.Core.LowLevelClient.Responses;
 using StreamChat.Core.Requests;
 using StreamChat.Core.Responses;

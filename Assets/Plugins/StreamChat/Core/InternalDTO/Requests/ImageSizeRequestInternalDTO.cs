@@ -8,6 +8,7 @@
 using StreamChat.Core.InternalDTO.Responses;
 using StreamChat.Core.InternalDTO.Events;
 using StreamChat.Core.InternalDTO.Models;
+using StreamChat.Core.LowLevelClient.Models;
 
 namespace StreamChat.Core.InternalDTO.Requests
 {

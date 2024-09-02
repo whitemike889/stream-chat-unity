@@ -13,7 +13,7 @@ namespace StreamChat.Core.LowLevelClient.Models
         /// <summary>
         /// Sets behavior of automatic moderation
         /// </summary>
-        public AutomodBehaviourType? AutomodBehavior { get; set; }
+        public AutomodBehaviourType AutomodBehavior { get; set; }
 
         public Thresholds AutomodThresholds { get; set; }
 
@@ -25,7 +25,7 @@ namespace StreamChat.Core.LowLevelClient.Models
         /// <summary>
         /// Sets behavior of blocklist
         /// </summary>
-        public AutomodBehaviourType? BlocklistBehavior { get; set; }
+        public AutomodBehaviourType BlocklistBehavior { get; set; }
 
         /// <summary>
         /// List of commands that channel supports
@@ -123,11 +123,11 @@ namespace StreamChat.Core.LowLevelClient.Models
 
         ChannelConfig ILoadableFrom<ChannelConfigWithInfoInternalDTO, ChannelConfig>.LoadFromDto(ChannelConfigWithInfoInternalDTO dto)
         {
-            Automod = dto.Automod;
-            AutomodBehavior = dto.AutomodBehavior;
+            Automod = Automod.TryLoadFromDto(dto.Automod);
+            AutomodBehavior = AutomodBehavior.TryLoadFromDto(dto.AutomodBehavior);
             AutomodThresholds = AutomodThresholds.TryLoadFromDto(dto.AutomodThresholds);
             Blocklist = dto.Blocklist;
-            BlocklistBehavior = dto.BlocklistBehavior;
+            BlocklistBehavior = BlocklistBehavior.TryLoadFromDto(dto.BlocklistBehavior);
             Commands = Commands.TryLoadFromDtoCollection(dto.Commands);
             ConnectEvents = dto.ConnectEvents;
             CreatedAt = dto.CreatedAt;
