@@ -215,10 +215,10 @@ namespace StreamChat.Core
             return InternalLowLevelClient.DisconnectAsync(permanent: true);
         }
 
-        public async Task<CurrentUnreadCounts> GetLatestUnreadCountsAsync()
+        public async Task<StreamCurrentUnreadCounts> GetLatestUnreadCountsAsync()
         {
             var dto = await InternalLowLevelClient.InternalChannelApi.GetUnreadCountsAsync();
-            var response = dto.ToDomain<WrappedUnreadCountsResponseInternalDTO, CurrentUnreadCounts>();
+            var response = dto.ToDomain<WrappedUnreadCountsResponseInternalDTO, StreamCurrentUnreadCounts>();
             
             _localUserData.TryUpdateFromDto<WrappedUnreadCountsResponseInternalDTO, StreamLocalUserData>(dto, _cache);
 

@@ -8,22 +8,22 @@ namespace StreamChat.Core.Responses
     /// <summary>
     /// Represents the current state of unread counts for the user. Unread counts mean how many messages and threads are unread in the channels and threads the user is participating in
     /// </summary>
-    public sealed class CurrentUnreadCounts : ILoadableFrom<WrappedUnreadCountsResponseInternalDTO, CurrentUnreadCounts>
+    public sealed class StreamCurrentUnreadCounts : ILoadableFrom<WrappedUnreadCountsResponseInternalDTO, StreamCurrentUnreadCounts>
     {
         /// <summary>
         /// Unread status grouped by <see cref="ChannelType"/>. Each entry represents a channel type with unread messages among all channels of that type
         /// </summary>
-        public IReadOnlyList<ChannelTypeUnreadCounts> UnreadChannelsByType => _unreadChannelsByType;
+        public IReadOnlyList<StreamChannelTypeUnreadCounts> UnreadChannelsByType => _unreadChannelsByType;
         
         /// <summary>
         /// Unread status per channel. Each entry represents a channel with unread messages
         /// </summary>
-        public IReadOnlyList<ChannelUnreadCounts> UnreadChannels => _unreadChannels;
+        public IReadOnlyList<StreamChannelUnreadCounts> UnreadChannels => _unreadChannels;
         
         /// <summary>
         /// Unread status per thread. Each entry represents a thread with unread messages
         /// </summary>
-        public IReadOnlyList<ThreadUnreadCounts> UnreadThreads => _unreadThreads;
+        public IReadOnlyList<StreamThreadUnreadCounts> UnreadThreads => _unreadThreads;
 
         /// <summary>
         /// Total unread messages count
@@ -35,7 +35,7 @@ namespace StreamChat.Core.Responses
         /// </summary>
         public int TotalUnreadThreadsCount { get; private set; }
 
-        CurrentUnreadCounts ILoadableFrom<WrappedUnreadCountsResponseInternalDTO, CurrentUnreadCounts>.LoadFromDto(WrappedUnreadCountsResponseInternalDTO dto)
+        StreamCurrentUnreadCounts ILoadableFrom<WrappedUnreadCountsResponseInternalDTO, StreamCurrentUnreadCounts>.LoadFromDto(WrappedUnreadCountsResponseInternalDTO dto)
         {
             _unreadChannelsByType = _unreadChannelsByType.TryLoadFromDtoCollection(dto.ChannelType);
             _unreadChannels = _unreadChannels.TryLoadFromDtoCollection(dto.Channels);
@@ -47,8 +47,8 @@ namespace StreamChat.Core.Responses
             return this;
         }
         
-        private List<ChannelTypeUnreadCounts> _unreadChannelsByType = new List<ChannelTypeUnreadCounts>();
-        private List<ChannelUnreadCounts> _unreadChannels = new List<ChannelUnreadCounts>();
-        private List<ThreadUnreadCounts> _unreadThreads = new List<ThreadUnreadCounts>();
+        private List<StreamChannelTypeUnreadCounts> _unreadChannelsByType = new List<StreamChannelTypeUnreadCounts>();
+        private List<StreamChannelUnreadCounts> _unreadChannels = new List<StreamChannelUnreadCounts>();
+        private List<StreamThreadUnreadCounts> _unreadThreads = new List<StreamThreadUnreadCounts>();
     }
 }

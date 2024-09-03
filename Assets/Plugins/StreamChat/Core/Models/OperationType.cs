@@ -1,4 +1,4 @@
-﻿namespace StreamChat.Core
+﻿namespace StreamChat.Core.Models
 {
     public enum OperationType
     {

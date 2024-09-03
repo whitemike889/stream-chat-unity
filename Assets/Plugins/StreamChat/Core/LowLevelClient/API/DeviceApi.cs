@@ -23,10 +23,10 @@ namespace StreamChat.Core.LowLevelClient.API
             return dto.ToDomain<ResponseInternalDTO, ApiResponse>();
         }
 
-        public async Task<ListDevicesResponse> ListDevicesAsync(string userId)
+        public async Task<StreamListDevicesResponse> ListDevicesAsync(string userId)
         {
             var dto = await _internalDeviceApi.ListDevicesAsync(userId);
-            return dto.ToDomain<ListDevicesResponseInternalDTO, ListDevicesResponse>();
+            return dto.ToDomain<ListDevicesResponseInternalDTO, StreamListDevicesResponse>();
         }
 
 
