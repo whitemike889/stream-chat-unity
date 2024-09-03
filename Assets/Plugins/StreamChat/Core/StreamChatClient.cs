@@ -7,9 +7,9 @@ using StreamChat.Core.Configs;
 using StreamChat.Core.Exceptions;
 using StreamChat.Core.Helpers;
 using StreamChat.Core.InternalDTO.Events;
-using StreamChat.Core.InternalDTO.Extra;
 using StreamChat.Core.InternalDTO.Models;
 using StreamChat.Core.InternalDTO.Requests;
+using StreamChat.Core.InternalDTO.Responses;
 using StreamChat.Core.LowLevelClient;
 using StreamChat.Core.State;
 using StreamChat.Core.State.Caches;
@@ -453,7 +453,7 @@ namespace StreamChat.Core
             StreamAsserts.AssertNotNullOrEmpty(userRequests, nameof(userRequests));
 
             //StreamTodo: items could be null
-            var requestDtos = userRequests.Select(_ => _.TrySaveToDto()).ToDictionary(_ => _.Id, _ => _);
+            var requestDtos = userRequests.Select(_ => _.TrySaveToDto<UserRequestInternalDTO>()).ToDictionary(_ => _.Id, _ => _);
 
             var response = await InternalLowLevelClient.InternalUserApi.UpsertManyUsersAsync(
                 new UpdateUsersRequestInternalDTO
@@ -1144,7 +1144,7 @@ namespace StreamChat.Core
 
             if (_cache.Messages.TryGet(eventDto.Message.Id, out var message))
             {
-                var reaction = new StreamReaction().TryLoadFromDto(eventDto.Reaction, _cache);
+                var reaction = new StreamReaction().TryLoadFromDto<ReactionInternalDTO, StreamReaction>(eventDto.Reaction, _cache);
                 message.HandleReactionNewEvent(eventDto, channel, reaction);
                 channel.InternalNotifyReactionReceived(message, reaction);
             }
@@ -1159,7 +1159,7 @@ namespace StreamChat.Core
 
             if (_cache.Messages.TryGet(eventDto.Message.Id, out var message))
             {
-                var reaction = new StreamReaction().TryLoadFromDto(eventDto.Reaction, _cache);
+                var reaction = new StreamReaction().TryLoadFromDto<ReactionInternalDTO, StreamReaction>(eventDto.Reaction, _cache);
                 message.HandleReactionUpdatedEvent(eventDto, channel, reaction);
                 channel.InternalNotifyReactionUpdated(message, reaction);
             }
@@ -1174,7 +1174,7 @@ namespace StreamChat.Core
 
             if (_cache.Messages.TryGet(eventDto.Message.Id, out var message))
             {
-                var reaction = new StreamReaction().TryLoadFromDto(eventDto.Reaction, _cache);
+                var reaction = new StreamReaction().TryLoadFromDto<ReactionInternalDTO, StreamReaction>(eventDto.Reaction, _cache);
                 message.HandleReactionDeletedEvent(eventDto, channel, reaction);
                 channel.InternalNotifyReactionDeleted(message, reaction);
             }
