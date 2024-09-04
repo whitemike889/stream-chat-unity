@@ -33,7 +33,7 @@ namespace StreamChat.Core.StatefulModels
         IReadOnlyList<StreamMessageAttachment> Attachments { get; }
 
         /// <summary>
-        /// Channel unique identifier in &lt;type&gt;:&lt;id&gt; format
+        /// Channel unique identifier in type:id format
         /// </summary>
         string Cid { get; }
 
