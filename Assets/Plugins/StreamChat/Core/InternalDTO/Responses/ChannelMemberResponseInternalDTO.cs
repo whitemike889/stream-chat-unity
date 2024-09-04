@@ -75,7 +75,7 @@ namespace StreamChat.Core.InternalDTO.Responses
         /// </summary>
         [Newtonsoft.Json.JsonProperty("role", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(StreamChat.Core.Serialization.EnumeratedStructConverter<ChannelMemberResponseRoleInternalDTO>))]
-        public ChannelMemberResponseRoleInternalDTO Role { get; set; }
+        public ChannelMemberResponseRoleInternalDTO? Role { get; set; }
 
         /// <summary>
         /// Whether member is shadow banned in this channel or not

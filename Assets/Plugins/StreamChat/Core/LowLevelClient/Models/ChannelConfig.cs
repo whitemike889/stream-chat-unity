@@ -25,7 +25,7 @@ namespace StreamChat.Core.LowLevelClient.Models
         /// <summary>
         /// Sets behavior of blocklist
         /// </summary>
-        public AutomodBehaviourType BlocklistBehavior { get; set; }
+        public AutomodBehaviourType? BlocklistBehavior { get; set; }
 
         /// <summary>
         /// List of commands that channel supports
@@ -127,7 +127,7 @@ namespace StreamChat.Core.LowLevelClient.Models
             AutomodBehavior = AutomodBehavior.TryLoadFromDto(dto.AutomodBehavior);
             AutomodThresholds = AutomodThresholds.TryLoadFromDto(dto.AutomodThresholds);
             Blocklist = dto.Blocklist;
-            BlocklistBehavior = BlocklistBehavior.TryLoadFromDto(dto.BlocklistBehavior);
+            BlocklistBehavior = BlocklistBehavior.TryLoadNullableStructFromDto(dto.BlocklistBehavior);
             Commands = Commands.TryLoadFromDtoCollection(dto.Commands);
             ConnectEvents = dto.ConnectEvents;
             CreatedAt = dto.CreatedAt;

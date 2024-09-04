@@ -20,6 +20,9 @@ namespace StreamChat.Core.InternalDTO.Models
         [Newtonsoft.Json.JsonConverter(typeof(StreamChat.Core.Serialization.EnumeratedStructConverter<BlockListOptionsBehaviorInternalDTO>))]
         public BlockListOptionsBehaviorInternalDTO Behavior { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("blocklist", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Blocklist { get; set; }
+
         private System.Collections.Generic.Dictionary<string, object> _additionalProperties;
 
         [Newtonsoft.Json.JsonExtensionData]

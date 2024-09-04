@@ -69,7 +69,7 @@ namespace StreamChat.Core.InternalDTO.Requests
 
         [Newtonsoft.Json.JsonProperty("voting_visibility", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(StreamChat.Core.Serialization.EnumeratedStructConverter<CreatePollRequestVotingVisibilityInternalDTO>))]
-        public CreatePollRequestVotingVisibilityInternalDTO VotingVisibility { get; set; }
+        public CreatePollRequestVotingVisibilityInternalDTO? VotingVisibility { get; set; }
 
         private System.Collections.Generic.Dictionary<string, object> _additionalProperties;
 

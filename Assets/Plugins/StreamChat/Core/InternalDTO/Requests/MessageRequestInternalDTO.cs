@@ -71,7 +71,7 @@ namespace StreamChat.Core.InternalDTO.Requests
 
         [Newtonsoft.Json.JsonProperty("type", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(StreamChat.Core.Serialization.EnumeratedStructConverter<MessageRequestTypeInternalDTO>))]
-        public MessageRequestTypeInternalDTO Type { get; set; }
+        public MessageRequestTypeInternalDTO? Type { get; set; }
 
         private System.Collections.Generic.Dictionary<string, object> _additionalProperties;
 
