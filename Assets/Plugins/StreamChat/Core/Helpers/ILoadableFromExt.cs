@@ -1,5 +1,7 @@
 ﻿using System;
+using StreamChat.Core.InternalDTO.Models;
 using StreamChat.Core.LowLevelClient;
+using StreamChat.Core.LowLevelClient.Models;
 
 namespace StreamChat.Core.Helpers
 {
@@ -8,7 +10,9 @@ namespace StreamChat.Core.Helpers
     /// </summary>
     internal static class ILoadableFromExt
     {
-        //StreamTodo: rename to TryCreateFromDto? It's misleading because it creates new instance which you need to replace
+        /// <summary>
+        /// Load domain object from the DTO. If the loadable is null, creates a new instance of the domain object.
+        /// </summary>
         public static TDomain TryLoadFromDto<TDto, TDomain>(this ILoadableFrom<TDto, TDomain> loadable, TDto dto)
             where TDomain : ILoadableFrom<TDto, TDomain>, new()
         {
@@ -17,7 +21,7 @@ namespace StreamChat.Core.Helpers
                 return default;
             }
 
-            return new TDomain().LoadFromDto(dto);
+            return loadable != null ? loadable.LoadFromDto(dto) : new TDomain().LoadFromDto(dto);
         }
         
         public static TDomain UpdateFromDto<TDto, TDomain>(this ILoadableFrom<TDto, TDomain> loadable, TDto dto)
