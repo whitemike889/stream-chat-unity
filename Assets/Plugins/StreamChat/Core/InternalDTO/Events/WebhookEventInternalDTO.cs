@@ -7,20 +7,18 @@
 
 using StreamChat.Core.InternalDTO.Responses;
 using StreamChat.Core.InternalDTO.Requests;
-using StreamChat.Core.InternalDTO.Events;
+using StreamChat.Core.InternalDTO.Models;
 
-namespace StreamChat.Core.InternalDTO.Models
+namespace StreamChat.Core.InternalDTO.Events
 {
     using System = global::System;
 
+    /// <summary>
+    /// The discriminator object for all websocket events, it maps events' payload to the final type
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    internal partial class LabelThresholdsInternalDTO
+    internal partial class WebhookEventInternalDTO
     {
-        [Newtonsoft.Json.JsonProperty("block", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public float? Block { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("flag", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public float? Flag { get; set; }
 
         private System.Collections.Generic.Dictionary<string, object> _additionalProperties;
 

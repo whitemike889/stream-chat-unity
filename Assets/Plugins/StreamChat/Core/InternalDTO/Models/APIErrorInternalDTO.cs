@@ -58,6 +58,12 @@ namespace StreamChat.Core.InternalDTO.Models
         [Newtonsoft.Json.JsonProperty("more_info", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string MoreInfo { get; set; }
 
+        /// <summary>
+        /// Flag that indicates if the error is unrecoverable, requests that return unrecoverable errors should not be retried, this error only applies to the request that caused it
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("unrecoverable", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? Unrecoverable { get; set; }
+
         private System.Collections.Generic.Dictionary<string, object> _additionalProperties;
 
         [Newtonsoft.Json.JsonExtensionData]

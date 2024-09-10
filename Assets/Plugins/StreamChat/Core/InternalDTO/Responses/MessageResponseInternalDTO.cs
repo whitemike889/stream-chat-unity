@@ -20,7 +20,7 @@ namespace StreamChat.Core.InternalDTO.Responses
         public MessageInternalDTO Message { get; set; }
         
         [Newtonsoft.Json.JsonProperty("attachments", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.List<AttachmentInternalDTO> Attachments { get; set; } = new System.Collections.Generic.List<AttachmentInternalDTO>();
+        public System.Collections.Generic.List<AttachmentInternalDTO> Attachments { get; set; }
 
         [Newtonsoft.Json.JsonProperty("cid", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Cid { get; set; }
