@@ -6,16 +6,16 @@ namespace StreamChat.Core.Responses
     public readonly struct StreamImageCropType : System.IEquatable<StreamImageCropType>,
         ILoadableFrom<ImageCropTypeInternalDTO, StreamImageCropType>, ISavableTo<ImageCropTypeInternalDTO>
     {
-        public StreamImageCropType(string value)
-        {
-            _value = value;
-        }
-
         public static readonly StreamImageCropType Top = new StreamImageCropType("top");
         public static readonly StreamImageCropType Bottom = new StreamImageCropType("bottom");
         public static readonly StreamImageCropType Left = new StreamImageCropType("left");
         public static readonly StreamImageCropType Right = new StreamImageCropType("right");
         public static readonly StreamImageCropType Center = new StreamImageCropType("center");
+
+        public StreamImageCropType(string value)
+        {
+            _value = value;
+        }
 
         public override string ToString() => _value;
 
@@ -33,11 +33,13 @@ namespace StreamChat.Core.Responses
 
         public static implicit operator string(StreamImageCropType type) => type._value;
 
-        StreamImageCropType ILoadableFrom<ImageCropTypeInternalDTO, StreamImageCropType>.LoadFromDto(ImageCropTypeInternalDTO dto) => new StreamImageCropType(dto.Value);
+        StreamImageCropType ILoadableFrom<ImageCropTypeInternalDTO, StreamImageCropType>.
+            LoadFromDto(ImageCropTypeInternalDTO dto)
+            => new StreamImageCropType(dto.Value);
 
-        ImageCropTypeInternalDTO ISavableTo<ImageCropTypeInternalDTO>.SaveToDto() => new ImageCropTypeInternalDTO(_value);
+        ImageCropTypeInternalDTO ISavableTo<ImageCropTypeInternalDTO>.SaveToDto()
+            => new ImageCropTypeInternalDTO(_value);
 
         private readonly string _value;
     }
-
 }

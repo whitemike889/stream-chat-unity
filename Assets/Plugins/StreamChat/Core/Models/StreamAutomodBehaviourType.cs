@@ -7,14 +7,14 @@ namespace StreamChat.Core.Models
         ILoadableFrom<AutomodBehaviourTypeInternalDTO, StreamAutomodBehaviourType>,
         ISavableTo<AutomodBehaviourTypeInternalDTO>
     {
+        public static readonly StreamAutomodBehaviourType Flag = new StreamAutomodBehaviourType("flag");
+        public static readonly StreamAutomodBehaviourType Block = new StreamAutomodBehaviourType("block");
+        public static readonly StreamAutomodBehaviourType ShadowBlock = new StreamAutomodBehaviourType("shadow_block");
+
         public StreamAutomodBehaviourType(string value)
         {
             _value = value;
         }
-
-        public static readonly StreamAutomodBehaviourType Flag = new StreamAutomodBehaviourType("flag");
-        public static readonly StreamAutomodBehaviourType Block = new StreamAutomodBehaviourType("block");
-        public static readonly StreamAutomodBehaviourType ShadowBlock = new StreamAutomodBehaviourType("shadow_block");
 
         public override string ToString() => _value;
 
@@ -34,7 +34,7 @@ namespace StreamChat.Core.Models
             => new StreamAutomodBehaviourType(value);
 
         public static implicit operator string(StreamAutomodBehaviourType type) => type._value;
-        
+
         StreamAutomodBehaviourType ILoadableFrom<AutomodBehaviourTypeInternalDTO, StreamAutomodBehaviourType>.
             LoadFromDto(AutomodBehaviourTypeInternalDTO dto)
             => new StreamAutomodBehaviourType(dto.Value);

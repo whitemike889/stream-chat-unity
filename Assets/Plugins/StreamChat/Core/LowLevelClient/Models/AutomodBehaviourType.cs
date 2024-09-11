@@ -6,23 +6,25 @@ namespace StreamChat.Core.LowLevelClient.Models
         ILoadableFrom<AutomodBehaviourTypeInternalDTO, AutomodBehaviourType>,
         ISavableTo<AutomodBehaviourTypeInternalDTO>
     {
-        public AutomodBehaviourType(string value)
-        {
-            _value = value ?? throw new System.ArgumentNullException(nameof(value));
-        }
-
         public static readonly AutomodBehaviourType Flag = new AutomodBehaviourType("flag");
         public static readonly AutomodBehaviourType Block = new AutomodBehaviourType("block");
         public static readonly AutomodBehaviourType ShadowBlock = new AutomodBehaviourType("shadow_block");
+
+        public AutomodBehaviourType(string value)
+        {
+            _value = value;
+        }
 
         public override string ToString() => _value;
 
         public bool Equals(AutomodBehaviourType other) => _value == other._value;
 
-        AutomodBehaviourType ILoadableFrom<AutomodBehaviourTypeInternalDTO, AutomodBehaviourType>.LoadFromDto(AutomodBehaviourTypeInternalDTO dto)
+        AutomodBehaviourType ILoadableFrom<AutomodBehaviourTypeInternalDTO, AutomodBehaviourType>.
+            LoadFromDto(AutomodBehaviourTypeInternalDTO dto)
             => new AutomodBehaviourType(dto.Value);
 
-        AutomodBehaviourTypeInternalDTO ISavableTo<AutomodBehaviourTypeInternalDTO>.SaveToDto() => new AutomodBehaviourTypeInternalDTO(_value);
+        AutomodBehaviourTypeInternalDTO ISavableTo<AutomodBehaviourTypeInternalDTO>.SaveToDto()
+            => new AutomodBehaviourTypeInternalDTO(_value);
 
         public override bool Equals(object obj) => obj is AutomodBehaviourType other && Equals(other);
 

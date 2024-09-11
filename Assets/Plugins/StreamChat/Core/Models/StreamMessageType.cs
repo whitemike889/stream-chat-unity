@@ -7,17 +7,17 @@ namespace StreamChat.Core.Models
     public readonly struct StreamMessageType : IEquatable<StreamMessageType>,
         ILoadableFrom<MessageTypeInternalDTO, StreamMessageType>, ISavableTo<MessageTypeInternalDTO>
     {
-        public StreamMessageType(string value)
-        {
-            _value = value;
-        }
-
         public static readonly StreamMessageType Regular = new StreamMessageType("regular");
         public static readonly StreamMessageType Ephemeral = new StreamMessageType("ephemeral");
         public static readonly StreamMessageType Error = new StreamMessageType("error");
         public static readonly StreamMessageType Reply = new StreamMessageType("reply");
         public static readonly StreamMessageType System = new StreamMessageType("system");
         public static readonly StreamMessageType Deleted = new StreamMessageType("deleted");
+        
+        public StreamMessageType(string value)
+        {
+            _value = value;
+        }
 
         public override string ToString() => _value;
 

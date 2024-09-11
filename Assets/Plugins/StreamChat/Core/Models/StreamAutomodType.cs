@@ -6,14 +6,14 @@ namespace StreamChat.Core.Models
     public readonly struct StreamAutomodType : System.IEquatable<StreamAutomodType>,
         ILoadableFrom<AutomodTypeInternalDTO, StreamAutomodType>, ISavableTo<AutomodTypeInternalDTO>
     {
+        public static readonly StreamAutomodType Disabled = new StreamAutomodType("disabled");
+        public static readonly StreamAutomodType Simple = new StreamAutomodType("simple");
+        public static readonly StreamAutomodType AI = new StreamAutomodType("AI");
+        
         public StreamAutomodType(string value)
         {
             _value = value;
         }
-
-        public static readonly StreamAutomodType Disabled = new StreamAutomodType("disabled");
-        public static readonly StreamAutomodType Simple = new StreamAutomodType("simple");
-        public static readonly StreamAutomodType AI = new StreamAutomodType("AI");
 
         public override string ToString() => _value;
 

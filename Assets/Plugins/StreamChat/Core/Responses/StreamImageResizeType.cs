@@ -6,18 +6,15 @@ namespace StreamChat.Core.Responses
     public readonly struct StreamImageResizeType : System.IEquatable<StreamImageResizeType>,
         ILoadableFrom<ImageResizeTypeInternalDTO, StreamImageResizeType>, ISavableTo<ImageResizeTypeInternalDTO>
     {
-        private readonly string _value;
+        public static readonly StreamImageResizeType Clip = new StreamImageResizeType("clip");
+        public static readonly StreamImageResizeType Crop = new StreamImageResizeType("crop");
+        public static readonly StreamImageResizeType Scale = new StreamImageResizeType("scale");
+        public static readonly StreamImageResizeType Fill = new StreamImageResizeType("fill");
 
         public StreamImageResizeType(string value)
         {
             _value = value;
         }
-
-        // Predefined values
-        public static readonly StreamImageResizeType Clip = new StreamImageResizeType("clip");
-        public static readonly StreamImageResizeType Crop = new StreamImageResizeType("crop");
-        public static readonly StreamImageResizeType Scale = new StreamImageResizeType("scale");
-        public static readonly StreamImageResizeType Fill = new StreamImageResizeType("fill");
 
         public override string ToString() => _value;
 
@@ -35,9 +32,13 @@ namespace StreamChat.Core.Responses
 
         public static implicit operator string(StreamImageResizeType type) => type._value;
 
-        StreamImageResizeType ILoadableFrom<ImageResizeTypeInternalDTO, StreamImageResizeType>.LoadFromDto(ImageResizeTypeInternalDTO dto) => new StreamImageResizeType(dto.ToString());
+        StreamImageResizeType ILoadableFrom<ImageResizeTypeInternalDTO, StreamImageResizeType>.
+            LoadFromDto(ImageResizeTypeInternalDTO dto)
+            => new StreamImageResizeType(dto.ToString());
 
-        ImageResizeTypeInternalDTO ISavableTo<ImageResizeTypeInternalDTO>.SaveToDto() => new ImageResizeTypeInternalDTO(_value);
+        ImageResizeTypeInternalDTO ISavableTo<ImageResizeTypeInternalDTO>.SaveToDto()
+            => new ImageResizeTypeInternalDTO(_value);
+
+        private readonly string _value;
     }
-
 }

@@ -7,15 +7,15 @@ namespace StreamChat.Core.Models
         ILoadableFrom<PushProviderTypeInternalDTO, StreamPushProviderType>,
         ISavableTo<PushProviderTypeInternalDTO>
     {
-        public StreamPushProviderType(string value)
-        {
-            _value = value;
-        }
-
         public static readonly StreamPushProviderType Firebase = new StreamPushProviderType("firebase");
         public static readonly StreamPushProviderType Apn = new StreamPushProviderType("apn");
         public static readonly StreamPushProviderType Huawei = new StreamPushProviderType("huawei");
         public static readonly StreamPushProviderType Xiaomi = new StreamPushProviderType("xiaomi");
+        
+        public StreamPushProviderType(string value)
+        {
+            _value = value;
+        }
 
         public override string ToString() => _value;
 
