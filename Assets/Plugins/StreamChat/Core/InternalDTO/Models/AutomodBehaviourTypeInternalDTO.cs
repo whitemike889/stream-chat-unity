@@ -25,7 +25,7 @@ namespace StreamChat.Core.InternalDTO.Models
 
         public AutomodBehaviourTypeInternalDTO(string value)
         {
-            Value = value ?? throw new System.ArgumentNullException(nameof(value));
+            Value = value;
         }
 
         public AutomodBehaviourTypeInternalDTO Parse(string value) => new AutomodBehaviourTypeInternalDTO(value);

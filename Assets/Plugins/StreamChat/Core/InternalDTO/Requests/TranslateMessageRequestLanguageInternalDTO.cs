@@ -77,7 +77,7 @@ namespace StreamChat.Core.InternalDTO.Requests
 
         public TranslateMessageRequestLanguageInternalDTO(string value)
         {
-            Value = value ?? throw new System.ArgumentNullException(nameof(value));
+            Value = value;
         }
 
         public TranslateMessageRequestLanguageInternalDTO Parse(string value) => new TranslateMessageRequestLanguageInternalDTO(value);

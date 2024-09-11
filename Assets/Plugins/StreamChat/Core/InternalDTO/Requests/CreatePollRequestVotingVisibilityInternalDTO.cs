@@ -24,7 +24,7 @@ namespace StreamChat.Core.InternalDTO.Requests
 
         public CreatePollRequestVotingVisibilityInternalDTO(string value)
         {
-            Value = value ?? throw new System.ArgumentNullException(nameof(value));
+            Value = value;
         }
 
         public CreatePollRequestVotingVisibilityInternalDTO Parse(string value) => new CreatePollRequestVotingVisibilityInternalDTO(value);

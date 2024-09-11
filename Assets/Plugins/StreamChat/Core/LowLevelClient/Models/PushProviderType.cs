@@ -9,7 +9,7 @@ namespace StreamChat.Core.LowLevelClient.Models
     {
         public PushProviderType(string value)
         {
-            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+            _value = value;
         }
 
         public static readonly PushProviderType Firebase = new PushProviderType("firebase");

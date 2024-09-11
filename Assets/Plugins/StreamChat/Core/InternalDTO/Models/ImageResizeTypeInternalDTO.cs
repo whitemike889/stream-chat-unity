@@ -26,7 +26,7 @@ namespace StreamChat.Core.InternalDTO.Models
 
         public ImageResizeTypeInternalDTO(string value)
         {
-            Value = value ?? throw new System.ArgumentNullException(nameof(value));
+            Value = value;
         }
 
         public ImageResizeTypeInternalDTO Parse(string value) => new ImageResizeTypeInternalDTO(value);

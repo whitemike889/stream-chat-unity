@@ -8,7 +8,7 @@ namespace StreamChat.Core.LowLevelClient.Models
     {
         public ImageResizeType(string value)
         {
-            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+            _value = value;
         }
 
         public static readonly ImageResizeType Clip = new ImageResizeType("clip");

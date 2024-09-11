@@ -24,7 +24,7 @@ namespace StreamChat.Core.InternalDTO.Requests
 
         public MessageRequestTypeInternalDTO(string value)
         {
-            Value = value ?? throw new System.ArgumentNullException(nameof(value));
+            Value = value;
         }
 
         public MessageRequestTypeInternalDTO Parse(string value) => new MessageRequestTypeInternalDTO(value);

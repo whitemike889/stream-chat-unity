@@ -26,7 +26,7 @@ namespace StreamChat.Core.InternalDTO.Responses
 
         public ChannelMemberResponseRoleInternalDTO(string value)
         {
-            Value = value ?? throw new System.ArgumentNullException(nameof(value));
+            Value = value;
         }
 
         public ChannelMemberResponseRoleInternalDTO Parse(string value) => new ChannelMemberResponseRoleInternalDTO(value);

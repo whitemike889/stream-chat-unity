@@ -10,7 +10,7 @@ namespace StreamChat.Core.Responses
 
         public StreamImageResizeType(string value)
         {
-            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+            _value = value;
         }
 
         // Predefined values

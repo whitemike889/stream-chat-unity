@@ -6,7 +6,7 @@ namespace StreamChat.Core.LowLevelClient.Models
     {
         public ImageCropType(string value)
         {
-            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+            _value = value;
         }
 
         public static readonly ImageCropType Top = new ImageCropType("top");

@@ -25,7 +25,7 @@ namespace StreamChat.Core.InternalDTO.Models
 
         public BlockListOptionsBehaviorInternalDTO(string value)
         {
-            Value = value ?? throw new System.ArgumentNullException(nameof(value));
+            Value = value;
         }
 
         public BlockListOptionsBehaviorInternalDTO Parse(string value) => new BlockListOptionsBehaviorInternalDTO(value);

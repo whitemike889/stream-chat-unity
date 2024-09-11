@@ -9,7 +9,7 @@ namespace StreamChat.Core.Models
     {
         public StreamMessageType(string value)
         {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
+            _value = value;
         }
 
         public static readonly StreamMessageType Regular = new StreamMessageType("regular");

@@ -8,7 +8,7 @@ namespace StreamChat.Core.LowLevelClient.Models
     {
         public MessageType(string value)
         {
-            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+            _value = value;
         }
 
         public static readonly MessageType Regular = new MessageType("regular");

@@ -9,7 +9,7 @@ namespace StreamChat.Core.Models
     {
         public StreamAutomodBehaviourType(string value)
         {
-            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+            _value = value;
         }
 
         public static readonly StreamAutomodBehaviourType Flag = new StreamAutomodBehaviourType("flag");

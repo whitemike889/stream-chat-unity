@@ -26,7 +26,7 @@ namespace StreamChat.Core.InternalDTO.Models
 
         public PushProviderTypeInternalDTO(string value)
         {
-            Value = value ?? throw new System.ArgumentNullException(nameof(value));
+            Value = value;
         }
 
         public PushProviderTypeInternalDTO Parse(string value) => new PushProviderTypeInternalDTO(value);

@@ -6,7 +6,7 @@ namespace StreamChat.Core.LowLevelClient.Models
     {
         public AutomodType(string value)
         {
-            _value = value ?? throw new System.ArgumentNullException(nameof(value));
+            _value = value;
         }
 
         public static readonly AutomodType Disabled = new AutomodType("disabled");
