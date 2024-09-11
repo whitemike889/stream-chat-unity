@@ -8,7 +8,7 @@ namespace StreamChat.Core.Serialization
     /// Json converter to serialize and deserialize <see cref="IEnumeratedStruct"/>
     /// </summary>
     /// <typeparam name="TType">Specific type of the struct. This should be provided in a decorator</typeparam>
-    internal class EnumeratedStructConverter<TType> : JsonConverter 
+    internal class EnumeratedStructConverter<TType> : JsonConverter
         where TType : struct, IEnumeratedStruct<TType>
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -31,15 +31,21 @@ namespace StreamChat.Core.Serialization
             switch (reader.TokenType)
             {
                 case JsonToken.Null:
-                    return default;
+                    return default(TType);
                 case JsonToken.String:
                 {
                     var str = reader.Value?.ToString();
+                    if (str == null)
+                    {
+                        return default(TType);
+                    }
+
                     var instance = Activator.CreateInstance<TType>();
                     return instance.Parse(str);
                 }
                 default:
-                    throw new JsonSerializationException($"Unexpected token or value when parsing {objectType.FullName}");
+                    throw new JsonSerializationException(
+                        $"Unexpected token or value when parsing {objectType.FullName}");
             }
         }
 
