@@ -1,4 +1,4 @@
-﻿namespace StreamChat.Core
+﻿namespace StreamChat.Core.LowLevelClient
 {
     /// <summary>
     /// Event types that can be received from WebSocket connection

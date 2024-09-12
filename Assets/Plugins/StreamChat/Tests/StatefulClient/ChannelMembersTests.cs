@@ -250,9 +250,9 @@ namespace StreamChat.Tests.StatefulClient
             var receivedEvent2 = false;
             IStreamChannelMember eventMember2 = null;
             IStreamChannel eventChannel2 = null;
-            OperationType? opType = default;
+            StreamMemberChangeType? opType = default;
 
-            void OnMembersChanged(IStreamChannel channel2, IStreamChannelMember member, OperationType op)
+            void OnMembersChanged(IStreamChannel channel2, IStreamChannelMember member, StreamMemberChangeType op)
             {
                 if (channel2.Cid != channel.Cid)
                 {
@@ -283,7 +283,7 @@ namespace StreamChat.Tests.StatefulClient
             Assert.IsNotNull(eventChannel2);
             Assert.IsNotNull(eventMember2);
             Assert.AreEqual(user, eventMember2.User);
-            Assert.AreEqual(OperationType.Added, opType.Value);
+            Assert.AreEqual(StreamMemberChangeType.Added, opType.Value);
         }
 
         //[UnityTest] //StreamTodo: debug, works when triggered manually but fails in GitHub Actions
@@ -316,9 +316,9 @@ namespace StreamChat.Tests.StatefulClient
             var receivedEvent2 = false;
             IStreamChannelMember eventMember2 = null;
             IStreamChannel eventChannel2 = null;
-            OperationType? opType = default;
+            StreamMemberChangeType? opType = default;
 
-            void OnMembersChanged(IStreamChannel channel3, IStreamChannelMember member, OperationType op)
+            void OnMembersChanged(IStreamChannel channel3, IStreamChannelMember member, StreamMemberChangeType op)
             {
                 if (channel3.Cid != channel.Cid)
                 {
@@ -350,7 +350,7 @@ namespace StreamChat.Tests.StatefulClient
             Assert.IsNotNull(eventChannel2);
             Assert.IsNotNull(eventMember2);
             Assert.AreEqual(user, eventMember2.User);
-            Assert.AreEqual(OperationType.Removed, opType.Value);
+            Assert.AreEqual(StreamMemberChangeType.Removed, opType.Value);
         }
 
         [UnityTest]
