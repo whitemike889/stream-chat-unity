@@ -21,11 +21,11 @@ namespace StreamChat.Core.InternalDTO.Models
 
         [Newtonsoft.Json.JsonProperty("automod", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(StreamChat.Core.Serialization.EnumeratedStructConverter<AutomodTypeInternalDTO>))]
-        public AutomodTypeInternalDTO Automod { get; set; }
+        public AutomodTypeInternalDTO? Automod { get; set; }
 
         [Newtonsoft.Json.JsonProperty("automod_behavior", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(StreamChat.Core.Serialization.EnumeratedStructConverter<AutomodBehaviourTypeInternalDTO>))]
-        public AutomodBehaviourTypeInternalDTO AutomodBehavior { get; set; }
+        public AutomodBehaviourTypeInternalDTO? AutomodBehavior { get; set; }
 
         [Newtonsoft.Json.JsonProperty("automod_thresholds", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public ThresholdsInternalDTO AutomodThresholds { get; set; }

@@ -1,12 +1,10 @@
 ﻿using StreamChat.Core.Helpers;
 using StreamChat.Core.InternalDTO.Responses;
-using StreamChat.Core.LowLevelClient;
 using StreamChat.Core.LowLevelClient.Models;
-using StreamChat.Core.LowLevelClient.Responses;
 
-namespace StreamChat.Core.Responses
+namespace StreamChat.Core.LowLevelClient.Responses
 {
-    public partial class StreamListDevicesResponse : ResponseObjectBase, ILoadableFrom<ListDevicesResponseInternalDTO, StreamListDevicesResponse>
+    public partial class ListDevicesResponse : ResponseObjectBase, ILoadableFrom<ListDevicesResponseInternalDTO, ListDevicesResponse>
     {
         /// <summary>
         /// List of devices
@@ -18,7 +16,7 @@ namespace StreamChat.Core.Responses
         /// </summary>
         public string Duration { get; set; }
 
-        StreamListDevicesResponse ILoadableFrom<ListDevicesResponseInternalDTO, StreamListDevicesResponse>.LoadFromDto(ListDevicesResponseInternalDTO dto)
+        ListDevicesResponse ILoadableFrom<ListDevicesResponseInternalDTO, ListDevicesResponse>.LoadFromDto(ListDevicesResponseInternalDTO dto)
         {
             Devices = Devices.TryLoadFromDtoCollection(dto.Devices);
             Duration = dto.Duration;

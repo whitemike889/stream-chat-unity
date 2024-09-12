@@ -27,7 +27,7 @@ namespace StreamChat.Core.Models
         /// </summary>
         public string Id { get; private set; }
 
-        public StreamPushProviderType PushProvider { get; private set; }
+        public StreamPushProviderType? PushProvider { get; private set; }
 
         public string UserId { get; private set; }
 
@@ -37,7 +37,7 @@ namespace StreamChat.Core.Models
             Disabled = dto.Disabled;
             DisabledReason = dto.DisabledReason;
             Id = dto.Id;
-            PushProvider = PushProvider.TryLoadFromDto(dto.PushProvider);
+            PushProvider = PushProvider.TryLoadNullableStructFromDto(dto.PushProvider);
             UserId = dto.UserId;
 
             return this;

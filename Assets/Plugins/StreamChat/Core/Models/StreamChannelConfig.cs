@@ -1,6 +1,5 @@
 ﻿using StreamChat.Core.Helpers;
 using StreamChat.Core.InternalDTO.Models;
-using StreamChat.Core.LowLevelClient.Models;
 using StreamChat.Core.State;
 using StreamChat.Core.State.Caches;
 
@@ -11,12 +10,12 @@ namespace StreamChat.Core.Models
         /// <summary>
         /// Enables automatic message moderation
         /// </summary>
-        public StreamAutomodType Automod { get; private set; }
+        public StreamAutomodType? Automod { get; private set; }
 
         /// <summary>
         /// Sets behavior of automatic moderation
         /// </summary>
-        public StreamAutomodBehaviourType AutomodBehavior { get; private set; }
+        public StreamAutomodBehaviourType? AutomodBehavior { get; private set; }
 
         public StreamThresholds AutomodThresholds { get; private set; }
 
@@ -126,8 +125,8 @@ namespace StreamChat.Core.Models
 
         StreamChannelConfig IStateLoadableFrom<ChannelConfigWithInfoInternalDTO, StreamChannelConfig>.LoadFromDto(ChannelConfigWithInfoInternalDTO dto, ICache cache)
         {
-            Automod = Automod.TryLoadFromDto(dto.Automod);
-            AutomodBehavior = AutomodBehavior.TryLoadFromDto(dto.AutomodBehavior);
+            Automod = Automod.TryLoadNullableStructFromDto(dto.Automod);
+            AutomodBehavior = AutomodBehavior.TryLoadNullableStructFromDto(dto.AutomodBehavior);
             AutomodThresholds = AutomodThresholds.TryLoadFromDto(dto.AutomodThresholds, cache);
             Blocklist = dto.Blocklist;
             BlocklistBehavior = BlocklistBehavior.TryLoadNullableStructFromDto(dto.BlocklistBehavior);

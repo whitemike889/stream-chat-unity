@@ -1,7 +1,5 @@
 ﻿using System;
-using StreamChat.Core.InternalDTO.Models;
 using StreamChat.Core.LowLevelClient;
-using StreamChat.Core.LowLevelClient.Models;
 
 namespace StreamChat.Core.Helpers
 {

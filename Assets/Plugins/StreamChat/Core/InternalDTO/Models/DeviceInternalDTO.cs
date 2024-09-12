@@ -30,7 +30,7 @@ namespace StreamChat.Core.InternalDTO.Models
 
         [Newtonsoft.Json.JsonProperty("push_provider", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(StreamChat.Core.Serialization.EnumeratedStructConverter<PushProviderTypeInternalDTO>))]
-        public PushProviderTypeInternalDTO PushProvider { get; set; }
+        public PushProviderTypeInternalDTO? PushProvider { get; set; }
 
         [Newtonsoft.Json.JsonProperty("push_provider_name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PushProviderName { get; set; }

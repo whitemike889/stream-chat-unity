@@ -25,7 +25,7 @@ namespace StreamChat.Core.InternalDTO.Requests
 
         [Newtonsoft.Json.JsonProperty("blocklist_behavior", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(StreamChat.Core.Serialization.EnumeratedStructConverter<AutomodBehaviourTypeInternalDTO>))]
-        public AutomodBehaviourTypeInternalDTO BlocklistBehavior { get; set; }
+        public AutomodBehaviourTypeInternalDTO? BlocklistBehavior { get; set; }
 
         [Newtonsoft.Json.JsonProperty("commands", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.List<string> Commands { get; set; }

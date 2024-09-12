@@ -397,7 +397,7 @@ namespace StreamChat.Core
             var requestBodyDto = new QueryUsersRequestInternalDTO
             {
                 FilterConditions
-                    = filters?.Select(_ => _.GenerateFilterEntry()).ToDictionary(x => x.Key, x => x.Value) ??
+                    = filters?.Select(f => f.GenerateFilterEntry()).ToDictionary(x => x.Key, x => x.Value) ??
                       new Dictionary<string, object>(),
                 IdGt = null,
                 IdGte = null,

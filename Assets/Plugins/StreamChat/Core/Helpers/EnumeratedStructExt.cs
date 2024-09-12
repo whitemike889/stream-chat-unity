@@ -19,5 +19,12 @@ namespace StreamChat.Core.Helpers
 
             return domain?.LoadFromDto(dto.Value) ?? default(TDomain).LoadFromDto(dto.Value);
         }
+        
+        public static TDTO? TrySaveNullableStructToDto<TDomain, TDTO>(this TDomain? domain)
+            where TDomain : struct, IEquatable<TDomain>, ISavableTo<TDTO>
+            where TDTO : struct, IEnumeratedStruct<TDTO>
+        {
+            return domain?.SaveToDto();
+        }
     }
 }

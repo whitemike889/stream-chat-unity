@@ -5,7 +5,6 @@ using StreamChat.Core.InternalDTO.Responses;
 using StreamChat.Core.LowLevelClient.API.Internal;
 using StreamChat.Core.LowLevelClient.Requests;
 using StreamChat.Core.LowLevelClient.Responses;
-using StreamChat.Core.Requests;
 using StreamChat.Core.Responses;
 
 namespace StreamChat.Core.LowLevelClient.API
@@ -23,10 +22,10 @@ namespace StreamChat.Core.LowLevelClient.API
             return dto.ToDomain<ResponseInternalDTO, ApiResponse>();
         }
 
-        public async Task<StreamListDevicesResponse> ListDevicesAsync(string userId)
+        public async Task<ListDevicesResponse> ListDevicesAsync(string userId)
         {
             var dto = await _internalDeviceApi.ListDevicesAsync(userId);
-            return dto.ToDomain<ListDevicesResponseInternalDTO, StreamListDevicesResponse>();
+            return dto.ToDomain<ListDevicesResponseInternalDTO, ListDevicesResponse>();
         }
 
 

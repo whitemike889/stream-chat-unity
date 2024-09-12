@@ -1,8 +1,6 @@
 ﻿using System.Threading.Tasks;
 using StreamChat.Core.LowLevelClient.Requests;
 using StreamChat.Core.LowLevelClient.Responses;
-using StreamChat.Core.Requests;
-using StreamChat.Core.Responses;
 
 namespace StreamChat.Core.LowLevelClient.API
 {
@@ -24,7 +22,7 @@ namespace StreamChat.Core.LowLevelClient.API
         /// Provides a list of all devices associated with a user.
         /// </summary>
         /// <remarks>https://getstream.io/chat/docs/unity/push_devices/?language=unity</remarks>
-        Task<StreamListDevicesResponse> ListDevicesAsync(string userId);
+        Task<ListDevicesResponse> ListDevicesAsync(string userId);
 
         /// <summary>
         /// <para>Removes a device.</para>

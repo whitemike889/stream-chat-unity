@@ -42,4 +42,6 @@ namespace StreamChat.Samples.LowLevelClient.ClientDocs
         
         private IStreamChatLowLevelClient Client;
     }
+    
+    //StreamTodo: Update code samples. They refer to Client as LLC but should be using IStreamChatClient
 }
