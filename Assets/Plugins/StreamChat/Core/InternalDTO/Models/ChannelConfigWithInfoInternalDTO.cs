@@ -20,12 +20,12 @@ namespace StreamChat.Core.InternalDTO.Models
         public System.Collections.Generic.List<string> AllowedFlagReasons { get; set; }
 
         [Newtonsoft.Json.JsonProperty("automod", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public AutomodType Automod { get; set; }
+        [Newtonsoft.Json.JsonConverter(typeof(StreamChat.Core.Serialization.EnumeratedStructConverter<AutomodTypeInternalDTO>))]
+        public AutomodTypeInternalDTO? Automod { get; set; }
 
         [Newtonsoft.Json.JsonProperty("automod_behavior", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public AutomodBehaviourType AutomodBehavior { get; set; }
+        [Newtonsoft.Json.JsonConverter(typeof(StreamChat.Core.Serialization.EnumeratedStructConverter<AutomodBehaviourTypeInternalDTO>))]
+        public AutomodBehaviourTypeInternalDTO? AutomodBehavior { get; set; }
 
         [Newtonsoft.Json.JsonProperty("automod_thresholds", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public ThresholdsInternalDTO AutomodThresholds { get; set; }
@@ -34,8 +34,8 @@ namespace StreamChat.Core.InternalDTO.Models
         public string Blocklist { get; set; }
 
         [Newtonsoft.Json.JsonProperty("blocklist_behavior", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public AutomodBehaviourType? BlocklistBehavior { get; set; }
+        [Newtonsoft.Json.JsonConverter(typeof(StreamChat.Core.Serialization.EnumeratedStructConverter<AutomodBehaviourTypeInternalDTO>))]
+        public AutomodBehaviourTypeInternalDTO? BlocklistBehavior { get; set; }
 
         [Newtonsoft.Json.JsonProperty("blocklists", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.List<BlockListOptionsInternalDTO> Blocklists { get; set; }

@@ -215,10 +215,10 @@ namespace StreamChat.Core
             return InternalLowLevelClient.DisconnectAsync(permanent: true);
         }
 
-        public async Task<CurrentUnreadCounts> GetLatestUnreadCountsAsync()
+        public async Task<StreamCurrentUnreadCounts> GetLatestUnreadCountsAsync()
         {
             var dto = await InternalLowLevelClient.InternalChannelApi.GetUnreadCountsAsync();
-            var response = dto.ToDomain<WrappedUnreadCountsResponseInternalDTO, CurrentUnreadCounts>();
+            var response = dto.ToDomain<WrappedUnreadCountsResponseInternalDTO, StreamCurrentUnreadCounts>();
             
             _localUserData.TryUpdateFromDto<WrappedUnreadCountsResponseInternalDTO, StreamLocalUserData>(dto, _cache);
 
@@ -397,7 +397,7 @@ namespace StreamChat.Core
             var requestBodyDto = new QueryUsersRequestInternalDTO
             {
                 FilterConditions
-                    = filters?.Select(_ => _.GenerateFilterEntry()).ToDictionary(x => x.Key, x => x.Value) ??
+                    = filters?.Select(f => f.GenerateFilterEntry()).ToDictionary(x => x.Key, x => x.Value) ??
                       new Dictionary<string, object>(),
                 IdGt = null,
                 IdGte = null,
