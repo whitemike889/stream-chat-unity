@@ -30,6 +30,8 @@ namespace StreamChat.Tests.StatefulClient
         private async Task When_creating_channel_with_id_expect_no_errors_Async()
         {
             var channel = await CreateUniqueTempChannelAsync();
+            
+            throw new Exception("Fail test to test CI/CD pipeline"); //StreamTodo: remove this
         }
 
         [UnityTest]
