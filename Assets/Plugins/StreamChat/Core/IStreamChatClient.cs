@@ -254,9 +254,18 @@ namespace StreamChat.Core
         bool IsLocalUser(IStreamUser messageUser);
 
         /// <summary>
-        /// Get current state of unread counts for the user. Unread counts mean how many messages and threads are unread in the channels and threads the user is participating in
+        /// Get current state of unread counts for the user. Unread counts mean how many messages and threads are unread in the channels and threads the user is participating in.
+        ///
+        /// This method can be used in offline mode as well to poll the latest unread counts without establishing a connection.
+        /// To use it this way, you need to call the <see cref="SeAuthorizationCredentials"/> method first to set the authorization credentials for the API call.
         /// </summary>
-        /// <returns><see cref="StreamCurrentUnreadCounts"/></returns>
+        /// <returns><see cref="StreamCurrentUnreadCounts"/>Contains information about unread counts in channels and threads</returns>
         Task<StreamCurrentUnreadCounts> GetLatestUnreadCountsAsync();
+
+        /// <summary>
+        /// Set authorization credentials for the client to use when connecting to the API
+        /// </summary>
+        /// <param name="authCredentials">Credentials containing: api key, user ID, and a user Token</param>
+        void SeAuthorizationCredentials(AuthCredentials authCredentials);
     }
 }
