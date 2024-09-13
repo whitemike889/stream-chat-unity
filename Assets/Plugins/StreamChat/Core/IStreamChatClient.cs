@@ -256,7 +256,7 @@ namespace StreamChat.Core
         /// <summary>
         /// Get current state of unread counts for the user. Unread counts mean how many messages and threads are unread in the channels and threads the user is participating in
         /// </summary>
-        /// <returns><see cref="CurrentUnreadCounts"/></returns>
-        Task<CurrentUnreadCounts> GetLatestUnreadCountsAsync();
+        /// <returns><see cref="StreamCurrentUnreadCounts"/></returns>
+        Task<StreamCurrentUnreadCounts> GetLatestUnreadCountsAsync();
     }
 }

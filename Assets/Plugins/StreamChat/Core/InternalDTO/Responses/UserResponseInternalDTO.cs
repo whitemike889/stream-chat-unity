@@ -57,6 +57,7 @@ namespace StreamChat.Core.InternalDTO.Responses
 
         [Newtonsoft.Json.JsonProperty("invisible", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool? Invisible { get; set; }
+
         [Newtonsoft.Json.JsonProperty("image", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Image { get; set; }
 
@@ -83,9 +84,9 @@ namespace StreamChat.Core.InternalDTO.Responses
         /// </summary>
         [Newtonsoft.Json.JsonProperty("online", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Online { get; set; }
-
         [Newtonsoft.Json.JsonProperty("push_notifications", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public PushNotificationSettingsInternalDTO PushNotifications { get; set; }
+
 
         /// <summary>
         /// Revocation date for tokens

@@ -128,7 +128,7 @@ namespace StreamChat.Core.InternalDTO.Responses
         public System.Collections.Generic.List<UserObjectInternalDTO> ThreadParticipants { get; set; }
 
         [Newtonsoft.Json.JsonProperty("type", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public MessageType Type { get; set; }
+        public MessageTypeInternalDTO Type { get; set; }
 
         [Newtonsoft.Json.JsonProperty("updated_at", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset UpdatedAt { get; set; }

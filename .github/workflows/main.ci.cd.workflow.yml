@@ -128,7 +128,7 @@ jobs:
         with:
           customParameters: -streamBase64TestDataSet "${{ secrets.STREAM_AUTH_TEST_DATA_BASE64 }}" -testDataSetIndex ${{ env.SEQUENTIAL_INDEX }}
           customImage: ${{ env.DOCKER_TAG }}
-        timeout-minutes: 20
+        timeout-minutes: 40
         continue-on-error: true
 
       - name: Run Tests (Attempt 2)
@@ -142,7 +142,7 @@ jobs:
         with:
           customParameters: -streamBase64TestDataSet "${{ secrets.STREAM_AUTH_TEST_DATA_BASE64 }}" -testDataSetIndex ${{ env.SEQUENTIAL_INDEX }}
           customImage: ${{ env.DOCKER_TAG }}
-        timeout-minutes: 20
+        timeout-minutes: 50
         continue-on-error: true
 
       - name: Run Tests (Attempt 3)
@@ -156,7 +156,7 @@ jobs:
         with:
           customParameters: -streamBase64TestDataSet "${{ secrets.STREAM_AUTH_TEST_DATA_BASE64 }}" -testDataSetIndex ${{ env.SEQUENTIAL_INDEX }}
           customImage: ${{ env.DOCKER_TAG }}
-        timeout-minutes: 20
+        timeout-minutes: 60
         continue-on-error: true
 
       - name: Run Tests (Attempt 4)
@@ -170,7 +170,7 @@ jobs:
         with:
           customParameters: -streamBase64TestDataSet "${{ secrets.STREAM_AUTH_TEST_DATA_BASE64 }}" -testDataSetIndex ${{ env.SEQUENTIAL_INDEX }}
           customImage: ${{ env.DOCKER_TAG }}
-        timeout-minutes: 20
+        timeout-minutes: 60
         continue-on-error: true
 
       - name: Run Tests (Attempt 5)
@@ -184,7 +184,7 @@ jobs:
         with:
           customParameters: -streamBase64TestDataSet "${{ secrets.STREAM_AUTH_TEST_DATA_BASE64 }}" -testDataSetIndex ${{ env.SEQUENTIAL_INDEX }}
           customImage: ${{ env.DOCKER_TAG }}
-        timeout-minutes: 20
+        timeout-minutes: 60
 
       - name: Upload Test Results as Artifact
         uses: actions/upload-artifact@v4

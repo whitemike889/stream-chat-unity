@@ -18,12 +18,6 @@ namespace StreamChat.Core.InternalDTO.Requests
     {
         [Newtonsoft.Json.JsonProperty("attachments", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.List<AttachmentRequestInternalDTO> Attachments { get; set; }
-        
-        /// <summary>
-        /// Contains HTML markup of the message. Can only be set when using server-side API
-        /// </summary>
-        [Newtonsoft.Json.JsonProperty("html", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Html { get; set; }
 
         [Newtonsoft.Json.JsonProperty("custom", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.Dictionary<string, object> Custom { get; set; }
@@ -49,11 +43,6 @@ namespace StreamChat.Core.InternalDTO.Requests
         [Newtonsoft.Json.JsonProperty("pinned_at", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset? PinnedAt { get; set; }
 
-        /// <summary>
-        /// Contains user who pinned the message
-        /// </summary>
-        [Newtonsoft.Json.JsonProperty("pinned_by", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string PinnedBy { get; set; }
         [Newtonsoft.Json.JsonProperty("poll_id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PollId { get; set; }
 
@@ -70,8 +59,8 @@ namespace StreamChat.Core.InternalDTO.Requests
         public string Text { get; set; }
 
         [Newtonsoft.Json.JsonProperty("type", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public MessageRequestType? Type { get; set; }
+        [Newtonsoft.Json.JsonConverter(typeof(StreamChat.Core.Serialization.EnumeratedStructConverter<MessageRequestTypeInternalDTO>))]
+        public MessageRequestTypeInternalDTO? Type { get; set; }
 
         private System.Collections.Generic.Dictionary<string, object> _additionalProperties;
 

@@ -20,8 +20,8 @@ namespace StreamChat.Core.InternalDTO.Requests
         /// Language to translate message to
         /// </summary>
         [Newtonsoft.Json.JsonProperty("language", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public TranslateMessageRequestLanguage Language { get; set; }
+        [Newtonsoft.Json.JsonConverter(typeof(StreamChat.Core.Serialization.EnumeratedStructConverter<TranslateMessageRequestLanguageInternalDTO>))]
+        public TranslateMessageRequestLanguageInternalDTO Language { get; set; }
 
         private System.Collections.Generic.Dictionary<string, object> _additionalProperties;
 

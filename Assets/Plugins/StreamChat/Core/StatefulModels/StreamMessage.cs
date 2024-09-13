@@ -6,6 +6,7 @@ using StreamChat.Core.InternalDTO.Events;
 using StreamChat.Core.InternalDTO.Models;
 using StreamChat.Core.InternalDTO.Requests;
 using StreamChat.Core.InternalDTO.Responses;
+using StreamChat.Core.LowLevelClient.Models;
 using StreamChat.Core.State;
 using StreamChat.Core.State.Caches;
 using StreamChat.Core.Models;
@@ -79,13 +80,13 @@ namespace StreamChat.Core.StatefulModels
 
         public IReadOnlyList<IStreamUser> ThreadParticipants => _threadParticipants;
 
-        public StreamMessageType? Type { get; private set; }
+        public StreamMessageType Type { get; private set; }
 
         public DateTimeOffset? UpdatedAt { get; private set; }
 
         public IStreamUser User { get; private set; }
         
-        public bool IsDeleted => Type == StreamMessageType.Deleted;
+        public bool IsDeleted => Type == MessageType.Deleted;
 
         //Do not update message from response, the WS event might have been processed and we would overwrite it with an old state
         public Task SoftDeleteAsync() => LowLevelClient.InternalMessageApi.DeleteMessageAsync(Id, hard: false);
@@ -221,7 +222,7 @@ namespace StreamChat.Core.StatefulModels
             Text = GetOrDefault(dto.Text, Text);
             _mentionedUsers.TryReplaceTrackedObjects(dto.MentionedUsers, cache.Users);
             _threadParticipants.TryReplaceTrackedObjects(dto.ThreadParticipants, cache.Users);
-            Type = dto.Type.TryConvertToStreamMessageType();
+            Type = Type.TryLoadFromDto(dto.Type);
             UpdatedAt = GetOrDefault(dto.UpdatedAt, UpdatedAt);
             User = cache.TryCreateOrUpdate(dto.User);
             
@@ -260,7 +261,7 @@ namespace StreamChat.Core.StatefulModels
             Text = GetOrDefault(dto.Text, Text);
             _mentionedUsers.TryReplaceTrackedObjects(dto.MentionedUsers, cache.Users);
             _threadParticipants.TryReplaceTrackedObjects(dto.ThreadParticipants, cache.Users);
-            Type = dto.Type.TryConvertToStreamMessageType();
+            Type = Type.TryLoadFromDto(dto.Type);
             UpdatedAt = GetOrDefault(dto.UpdatedAt, UpdatedAt);
             User = cache.TryCreateOrUpdate(dto.User);
             

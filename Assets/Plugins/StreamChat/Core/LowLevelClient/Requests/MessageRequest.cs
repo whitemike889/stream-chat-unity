@@ -24,7 +24,8 @@ namespace StreamChat.Core.LowLevelClient.Requests
         /// <summary>
         /// Contains HTML markup of the message. Can only be set when using server-side API
         /// </summary>
-        public string Html { get; set; }
+        [Obsolete("Has no effect and will be removed in a future release")] //StreamTODO: remove this in a major release
+        public string Html { get; set; } //StreamTodo: mark as obsolete, this is most probably server-side only
 
         /// <summary>
         /// Message ID is unique string identifier of the message
@@ -97,7 +98,7 @@ namespace StreamChat.Core.LowLevelClient.Requests
             new MessageRequestInternalDTO
             {
                 Attachments = Attachments?.TrySaveToDtoCollection<AttachmentRequest, AttachmentRequestInternalDTO>(),
-                Html = Html,
+                //Html = Html,
                 Id = Id,
                 MentionedUsers = MentionedUsers,
                 Mml = Mml,

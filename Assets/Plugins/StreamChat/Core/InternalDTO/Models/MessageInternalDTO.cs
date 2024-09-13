@@ -215,8 +215,8 @@ namespace StreamChat.Core.InternalDTO.Models
         /// Contains type of the message
         /// </summary>
         [Newtonsoft.Json.JsonProperty("type", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public MessageType? Type { get; set; }
+        [Newtonsoft.Json.JsonConverter(typeof(StreamChat.Core.Serialization.EnumeratedStructConverter<MessageTypeInternalDTO>))]
+        public MessageTypeInternalDTO Type { get; set; }
 
         /// <summary>
         /// Date/time of the last update
