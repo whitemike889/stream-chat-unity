@@ -89,5 +89,11 @@ namespace StreamChat.Core.LowLevelClient
         Task DisconnectAsync(bool permanent = false);
 
         Task FetchAndProcessEventsSinceLastReceivedEvent(IEnumerable<string> channelCids);
+
+        /// <summary>
+        /// Set authorization credentials for the client to use when connecting to the API
+        /// </summary>
+        /// <param name="authCredentials">Credentials containing: api key, user ID, and a user Token</param>
+        void SeAuthorizationCredentials(AuthCredentials authCredentials);
     }
 }

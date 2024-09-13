@@ -165,6 +165,9 @@ namespace StreamChat.Core
         /// <inheritdoc cref="StreamChatLowLevelClient.SanitizeUserId"/>
         public static string SanitizeUserId(string userId) => StreamChatLowLevelClient.SanitizeUserId(userId);
 
+        public void SeAuthorizationCredentials(AuthCredentials authCredentials)
+            => InternalLowLevelClient.SeAuthorizationCredentials(authCredentials);
+
         public Task<IStreamLocalUserData> ConnectUserAsync(AuthCredentials userAuthCredentials,
             CancellationToken cancellationToken = default)
         {
@@ -219,7 +222,7 @@ namespace StreamChat.Core
         {
             var dto = await InternalLowLevelClient.InternalChannelApi.GetUnreadCountsAsync();
             var response = dto.ToDomain<WrappedUnreadCountsResponseInternalDTO, StreamCurrentUnreadCounts>();
-            
+
             _localUserData.TryUpdateFromDto<WrappedUnreadCountsResponseInternalDTO, StreamLocalUserData>(dto, _cache);
 
             return response;
@@ -453,7 +456,8 @@ namespace StreamChat.Core
             StreamAsserts.AssertNotNullOrEmpty(userRequests, nameof(userRequests));
 
             //StreamTodo: items could be null
-            var requestDtos = userRequests.Select(_ => _.TrySaveToDto<UserRequestInternalDTO>()).ToDictionary(_ => _.Id, _ => _);
+            var requestDtos = userRequests.Select(_ => _.TrySaveToDto<UserRequestInternalDTO>())
+                .ToDictionary(_ => _.Id, _ => _);
 
             var response = await InternalLowLevelClient.InternalUserApi.UpsertManyUsersAsync(
                 new UpdateUsersRequestInternalDTO
@@ -720,7 +724,7 @@ namespace StreamChat.Core
                 _connectUserTaskSource.TrySetCanceled();
             }
         }
-        
+
         private async Task InternalGetOrCreateChannelAsync(ChannelType channelType, string channelId)
         {
 #if STREAM_TESTS_ENABLED
@@ -749,7 +753,8 @@ namespace StreamChat.Core
 
                     var delay = 4 * i;
 #if STREAM_TESTS_ENABLED
-                    _logs.Warning($"InternalGetOrCreateChannelAsync attempt failed due to rate limit. Wait {delay} seconds and try again");
+                    _logs.Warning(
+                        $"InternalGetOrCreateChannelAsync attempt failed due to rate limit. Wait {delay} seconds and try again");
 #endif
                     //StreamTodo: pass CancellationToken
                     await Task.Delay(delay * 1000);
@@ -1144,7 +1149,9 @@ namespace StreamChat.Core
 
             if (_cache.Messages.TryGet(eventDto.Message.Id, out var message))
             {
-                var reaction = new StreamReaction().TryLoadFromDto<ReactionInternalDTO, StreamReaction>(eventDto.Reaction, _cache);
+                var reaction
+                    = new StreamReaction().TryLoadFromDto<ReactionInternalDTO, StreamReaction>(eventDto.Reaction,
+                        _cache);
                 message.HandleReactionNewEvent(eventDto, channel, reaction);
                 channel.InternalNotifyReactionReceived(message, reaction);
             }
@@ -1159,7 +1166,9 @@ namespace StreamChat.Core
 
             if (_cache.Messages.TryGet(eventDto.Message.Id, out var message))
             {
-                var reaction = new StreamReaction().TryLoadFromDto<ReactionInternalDTO, StreamReaction>(eventDto.Reaction, _cache);
+                var reaction
+                    = new StreamReaction().TryLoadFromDto<ReactionInternalDTO, StreamReaction>(eventDto.Reaction,
+                        _cache);
                 message.HandleReactionUpdatedEvent(eventDto, channel, reaction);
                 channel.InternalNotifyReactionUpdated(message, reaction);
             }
@@ -1174,7 +1183,9 @@ namespace StreamChat.Core
 
             if (_cache.Messages.TryGet(eventDto.Message.Id, out var message))
             {
-                var reaction = new StreamReaction().TryLoadFromDto<ReactionInternalDTO, StreamReaction>(eventDto.Reaction, _cache);
+                var reaction
+                    = new StreamReaction().TryLoadFromDto<ReactionInternalDTO, StreamReaction>(eventDto.Reaction,
+                        _cache);
                 message.HandleReactionDeletedEvent(eventDto, channel, reaction);
                 channel.InternalNotifyReactionDeleted(message, reaction);
             }
