@@ -165,7 +165,7 @@ namespace StreamChat.Core
         /// <inheritdoc cref="StreamChatLowLevelClient.SanitizeUserId"/>
         public static string SanitizeUserId(string userId) => StreamChatLowLevelClient.SanitizeUserId(userId);
 
-        public void SeAuthorizationCredentials(AuthCredentials authCredentials)
+        public void SetAuthorizationCredentials(AuthCredentials authCredentials)
             => InternalLowLevelClient.SeAuthorizationCredentials(authCredentials);
 
         public Task<IStreamLocalUserData> ConnectUserAsync(AuthCredentials userAuthCredentials,
