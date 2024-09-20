@@ -66,6 +66,7 @@ namespace StreamChat.Core
     /// </summary>
     public delegate void ChannelMemberRemovedHandler(IStreamChannel channel, IStreamChannelMember member);
 
+    /// <inheritdoc cref="IStreamChatClient"/>
     public sealed class StreamChatClient : IStreamChatClient
     {
         public event ConnectionMadeHandler Connected;
