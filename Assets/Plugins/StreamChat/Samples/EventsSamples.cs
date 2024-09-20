@@ -82,7 +82,7 @@ namespace StreamChat.Samples
         {
         }
 
-        private void OnMembersChanged(IStreamChannel channel, IStreamChannelMember member, StreamMemberChangeType streamMemberChangeType)
+        private void OnMembersChanged(IStreamChannel channel, IStreamChannelMember member, OperationType operationType)
         {
         }
 

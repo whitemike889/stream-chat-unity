@@ -3,7 +3,7 @@
     /// <summary>
     /// Type of operation for the members changed event
     /// </summary>
-    public enum StreamMemberChangeType
+    public enum OperationType
     {
         Added,
         Updated,
