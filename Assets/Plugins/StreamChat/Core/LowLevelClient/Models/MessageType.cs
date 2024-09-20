@@ -2,7 +2,7 @@
 
 namespace StreamChat.Core.LowLevelClient.Models
 {
-    public struct MessageType : System.IEquatable<MessageType>,
+    public readonly struct MessageType : System.IEquatable<MessageType>,
         ILoadableFrom<MessageTypeInternalDTO, MessageType>,
         ISavableTo<MessageTypeInternalDTO>
     {

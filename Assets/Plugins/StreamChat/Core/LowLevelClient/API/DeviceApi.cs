@@ -5,7 +5,6 @@ using StreamChat.Core.InternalDTO.Responses;
 using StreamChat.Core.LowLevelClient.API.Internal;
 using StreamChat.Core.LowLevelClient.Requests;
 using StreamChat.Core.LowLevelClient.Responses;
-using StreamChat.Core.Responses;
 
 namespace StreamChat.Core.LowLevelClient.API
 {

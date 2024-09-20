@@ -39,10 +39,7 @@ using System.Runtime.CompilerServices;
 
 namespace StreamChat.Core.LowLevelClient
 {
-    /// <summary>
-    /// Stream Chat Client - maintains WebSockets connection, executes API calls and exposes Stream events to which you can subscribe.
-    /// There should be only one instance of this client in your application.
-    /// </summary>
+    /// <inheritdoc cref="IStreamChatLowLevelClient"/>
     public class StreamChatLowLevelClient : IStreamChatLowLevelClient
     {
         public const string MenuPrefix = "Stream/";
